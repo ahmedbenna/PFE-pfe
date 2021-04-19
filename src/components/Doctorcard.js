@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 
 import { Typography, CssBaseline, Avatar, Grid } from '@material-ui/core/';
+import Calendar from './Calendar';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -72,7 +73,9 @@ export default function Doctorcard(props) {
           </Grid>
         </Grid>
         <Grid item>
-          calendar
+          <Calendar
+          doc={props.doc}
+          />
         </Grid>
       </Grid>
 

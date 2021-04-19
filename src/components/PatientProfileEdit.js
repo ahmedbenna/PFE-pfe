@@ -78,15 +78,13 @@ class PatientProfileEdit extends React.Component {
         e.preventDefault();
         const data = {
             email: this.state.email,
-           
-            patientPrincipal: {
-                nom: this.state.nom,
-                prenom: this.state.prenom,
-                genre: this.state.genre,
-                adresse: this.state.adresse,
-                dateDeNaissance: this.state.dateDeNaissance,
-                telephone: this.state.telephone
-            }
+            nom: this.state.nom,
+            prenom: this.state.prenom,
+            genre: this.state.genre,
+            adresse: this.state.adresse,
+            dateDeNaissance: this.state.dateDeNaissance,
+            telephone: this.state.telephone
+        
 
         };
         // window.location.reload(false)

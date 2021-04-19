@@ -52,6 +52,7 @@ class Result extends Component {
             <div className={classes.docs}>
             {this.state.docs.map(doc =>
                 <Doctorcard 
+                doc={doc}
                 img='../img/doc.png'
                 nom= {doc.nom} 
                 specialite={doc.specialite.libelle}

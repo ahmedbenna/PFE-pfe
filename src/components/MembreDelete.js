@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Grid, Typography, Divider, Button,Dialog, DialogActions, DialogContent } from '@material-ui/core'
+import { Grid, Typography, Divider, Button, Dialog, DialogActions, DialogContent } from '@material-ui/core'
 import MemberFamille from './MemberFamille'
 import { Clear } from '@material-ui/icons';
 
@@ -21,29 +21,38 @@ const styles = {
 
 
 class MembreDelete extends Component {
-    state = {
-        members: [],
-        patient: JSON.parse(localStorage.getItem("patientInfo")),
-    }
-    componentDidMount() {
-        const url = 'http://localhost:8080/api/comptePatients/' + this.state.patient.id + '/patients'
-        console.log("memberisssssddddddd", this.state.patient.id)
-        axios.get(url)
-            .then(res => {
-                console.log("membre :", res.data);
-                this.setState({ members: res.data });
+    constructor(props) {
 
-            }
-            )
+        super(props)
+        this.state = {
+            id: this.props.id,
+        }
+        console.log(this.state.id)
     }
-    handleDelete() {
-        const url = 'http://localhost:8080/api/comptePatients' + this.props.id
+    // componentDidMount() {
+    //     const url = 'http://localhost:8080/api/comptePatients/' + this.state.patient.id + '/patients'
+    //     console.log("memberisssssddddddd", this.state.patient.id)
+    //     axios.get(url)
+    //         .then(res => {
+    //             console.log("membre :", res.data);
+    //             this.setState({ members: res.data });
+
+    //         }
+    //         )
+    // }
+    handleDelete = e => {
+        const url = 'http://localhost:8080/api/patients/' + this.state.id
+        axios.delete(url)
+            .then(res => { console.log(res) })
+            .catch(err => { console.log(err) })
+        this.setState({ open: false })
+
     }
 
     render() {
         const { classes } = this.props;
-        const patient = JSON.parse(localStorage.getItem('patientInfo'))
-        console.log("memmmmmmm", this.state.members)
+        // const patient = JSON.parse(localStorage.getItem('patientInfo'))
+        // console.log("memmmmmmm", this.state.members)
 
         const handleClickOpen = () => {
             this.setState({ open: true });
@@ -55,34 +64,34 @@ class MembreDelete extends Component {
 
         return (
             <div className={classes.contaier}>
-               
 
-                   
 
-                       
-                            
-                            <div>
-                                    <Button just on onClick={handleClickOpen}><Clear /></Button>
 
-                                    <Dialog open={this.state.open} onClose={handleClose} aria-labelledby="form-dialog-title">
 
-                                        <DialogContent>
-                                            <Typography> supprimer {this.props.nom} {this.props.prenom} ?</Typography>
-                                        </DialogContent>
-                                        <DialogActions>
-                                            <Button onClick={this.handleDelete} color="primary">
-                                                Confermers
+
+
+                <div>
+                    <Button just on onClick={handleClickOpen}><Clear /></Button>
+
+                    <Dialog open={this.state.open} onClose={handleClose} aria-labelledby="form-dialog-title">
+
+                        <DialogContent>
+                            <Typography> supprimer {this.props.nom} {this.props.prenom} ?</Typography>
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={this.handleDelete} color="primary">
+                                Confermers
                                             </Button>
-                                            <Button onClick={handleClose} color="primary">
-                                                Annuler
+                            <Button onClick={handleClose} color="primary">
+                                Annuler
                                             </Button>
-                                        </DialogActions>
-                                    </Dialog>
-                                </div>
+                        </DialogActions>
+                    </Dialog>
+                </div>
 
-                       
-                   
-               
+
+
+
 
             </div>
         )

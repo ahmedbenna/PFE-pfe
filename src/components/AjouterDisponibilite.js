@@ -41,9 +41,9 @@ class AjouterDisponibilite extends React.Component {
     }
     handleSubmit(e) {
         e.preventDefault()
-        console.log(this.state.dispo)
+        console.log(moment().format(this.state.dispo))
         const url='http://localhost:8080/api/medecins/'+this.state.id+'/disponibilites'
-        axios.post(url,{dateTime: this.state.dispo})
+        axios.post(url,[{dateTime: moment().format(this.state.dispo)}])
         .then(res =>{
             console.log(res)
         })

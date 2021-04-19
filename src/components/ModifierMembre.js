@@ -82,10 +82,10 @@ class ModifierMembre extends React.Component {
         };
         console.log(data)
 
-        console.log("pppppppppppp", this.state.patient.id)
+        console.log("pppppppppppp", this.state.id)
 
 
-        const url = 'http://localhost:8080/api/comptePatients/' + this.state.id + '/patients'
+        const url = 'http://localhost:8080/api/patients/'+this.state.id
         axios.put(url, data)
             .then(res => console.log(res))
             .catch(err => console.log(err));
