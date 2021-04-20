@@ -70,7 +70,7 @@ function ProfileDoctor() {
     return (
         <div >
             <Grid container>
-                <Grid item xs={12} sm={5} className={classes.pad}>
+                <Grid item xs={12} sm={4} className={classes.pad}>
                     <Grid container direction='column'>
                         <Paper className={classes.paper}>
                             <div className={classes.container}>
@@ -122,7 +122,7 @@ function ProfileDoctor() {
                         </Paper>
                     </Grid>
                 </Grid>
-                <Grid item xs={12} sm={7} className={classes.pad}>
+                <Grid item xs={12} sm={8} className={classes.pad}>
                     <Grid container direction='column'>
                         <Paper className={classes.paper}>
 

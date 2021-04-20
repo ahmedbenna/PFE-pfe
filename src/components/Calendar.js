@@ -4,6 +4,8 @@ import { Container, CssBaseline, Grid, Typography } from '@material-ui/core/';
 
 import { withStyles } from '@material-ui/core/styles';
 
+import axios from 'axios'
+
 import moment from 'moment'
 import 'moment/locale/fr'
 
@@ -17,24 +19,33 @@ const styles = {
 class Calendar extends Component {
     
     constructor(props) {
-        const url('')
-        axios.get()
+        const dateDebut ='2021-05-06T10:01'
+        const dateFin =  '2021_05-06T10:59'
+        const url='http://localhost:8080/api/medecins/1/disponibilites?dateDebut=2021-05-06T10:01&dateFin=202105-06-T10:59'
+        
+        axios.get(url)
+        .then(res =>{console.log("dispo",res)
+                    localStorage.setItem("dispo",JSON.stringify(res.data)) })
+              
+        .catch(err => { console.log(err)})
         super(props);
-
+        const disponibilites=JSON.parse(localStorage.getItem("dispo"))
+        // console.log("dissss",disponibilites.dateTime)
        
         this.state = {
+         
+            dispo: disponibilites,
+            d0: new Date (),
             
-            d0: new Date (today),
-            
-            d1: new Date(today),
-            d2: new Date(today),
-            d3: new Date(today),
-            d4: new Date(today),
-            d5: new Date(today),
+            d1: new Date(),
+            d2: new Date(),
+            d3: new Date(),
+            d4: new Date(),
+            d5: new Date(),
 
 
         };
-        console.log("")
+       
 
     }
 
@@ -54,10 +65,15 @@ class Calendar extends Component {
                         <div>
                             <Grid container>
                                 <Grid item xs={12}>
-                                    <Grid spacing={2} container>
+                                    <Grid spacing={1} container>
                                         <Grid item>
                                             <Typography> {moment(this.state.d0).format('dddd')} </Typography>
                                             <Typography> {moment(this.state.d0).format("MMM D")}</Typography>
+                                            {/* {this.state.dispo.map(diss =>
+
+                                                <Typography> {moment(diss.dateTime).format('hh:mm')}</Typography>
+                                               
+                                            )} */}
                                         </Grid>
                                         <Grid item>
                                             <Typography> {moment(this.state.d1).format('dddd')} </Typography>
@@ -81,10 +97,21 @@ class Calendar extends Component {
                                         </Grid>
                                     </Grid>
                                 </Grid>
-                                {this.state.dispo}
-                                <Grid item>
-
-                                </Grid>
+                                
+                                {/* // <Grid item>
+                                    
+                                //     <Grid spacing={1} container>
+                                //         {this.state.dispo.map(dis =>
+                                            
+                                //             <Grid item>
+                                                
+                                                
+                                //                 {moment(dis.dateTime).format('hh:mm')}
+                                //             </Grid>
+                                    
+                                //         )}
+                                //     </Grid>
+                                // </Grid> */}
                             </Grid>
                         </div>
                     </Container>

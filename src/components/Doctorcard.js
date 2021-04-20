@@ -3,6 +3,7 @@ import Rendezvous from './Rendezvous'
 import { makeStyles } from '@material-ui/core/styles';
 
 
+
 import { Typography, CssBaseline, Avatar, Grid } from '@material-ui/core/';
 import Calendar from './Calendar';
 
@@ -55,7 +56,7 @@ export default function Doctorcard(props) {
             </Grid>
             <Grid item>
               <Typography className={classes.nom}>
-                {props.nom}
+                Dr.{props.nom}{props.prenom}
               </Typography>
               <Typography className={classes.specialite}>
                 {props.specialite}
@@ -76,6 +77,7 @@ export default function Doctorcard(props) {
           <Calendar
           doc={props.doc}
           />
+          
         </Grid>
       </Grid>
 
