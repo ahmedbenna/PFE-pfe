@@ -27,22 +27,24 @@ class AjouterDisponibilite extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            dat: new Date(),
+            dat: '',
             date: '',
             duree: '',
             lunD: '',
             lunF: '',
-            marD: '',
-            marF: '',
-            mercD: '',
-            mercF: '',
-            jeuD: '',
-            jeuF: '',
-            venD: '',
-            venF: '',
-            semD: '',
-            semF: '',
-            dispo: [],
+            // marD: '',
+            // marF: '',
+            // mercD: '',
+            // mercF: '',
+            // jeuD: '',
+            // jeuF: '',
+            // venD: '',
+            // venF: '',
+            // semD: '',
+            // semF: '',
+            // dispo: [{
+            //     dateTime:''
+            // }],
             id: JSON.parse(localStorage.getItem('doctorInfo')).id,
         };
 
@@ -61,30 +63,49 @@ class AjouterDisponibilite extends React.Component {
     }
     handleSubmit(e) {
         e.preventDefault()
-        // const date=this.state.lunD
-        this.setState({ date: this.state.lunD })
-        let dis = moment(this.state.dat+"T"+this.state.date);
         
+        
+        let m = moment(this.state.lunD,'HH:mm').minutes()
+        let m2 = moment(this.state.lunF,'HH:mm').minutes()
+        let h=  moment(this.state.lunD,'HH:mm').hour()
+        let h2=  moment(this.state.lunF,'HH:mm').hour()
+        
+   
+        
+        let dis= moment(this.state.dat)
+        let dis2= moment(this.state.dat)
 
-        if (moment(this.state.lunD, 'hh:mm').isBefore(moment(this.state.lunF, 'hh:mm'))) {
-            let dis = moment(this.state.dat+"T"+this.state.date);
-            this.state.dispo.push(moment(dis).format())
-            console.log('azeazeaze', this.state.date)
-            this.setState({ date: moment(this.state.lunD, "hh:mm").add(this.state.duree, 'minutes').format("HH:mm") })
-            // moment(date,'h:mma').add(this.state.duree,'minutes')
+        // console.log("let dis",moment(dis).format(),'t',moment(t).format('hh:mm'))
+        dis = moment(dis).add(m, 'minutes').format();
+        dis= moment(dis).add(h, 'hour').format()
+
+        dis2 = moment(dis2).add(m2, 'minutes').format();
+        dis2= moment(dis2).add(h2, 'hour').format()
+
+        // console.log("dis",moment(dis).format('mm'))
+       
+        while (((moment(dis).isBefore(dis2)) && (moment(dis).isSame(this.state.dat,"day")))||(moment(dis).isSame(dis2))) {
+            // this.setState({ dispo : [...this.state.dispo,  moment(dis).format('yyyy-MM-DDThh:mm')]})
+            // console.log('azeazeaze', moment(dis).format())
+
+            const url = 'http://localhost:8080/api/medecins/' + this.state.id + '/disponibilites'
+            axios.post(url, [{"dateTime": moment(dis).format('yyyy-MM-DDThh:mm')}])
+                .then(res => {
+                    console.log(res)
+                })
+                .catch(res => {
+                    console.log(res)
+                })
+
+            dis = moment(dis).add(this.state.duree, 'minutes').format()
+            
+           
         }
 
 
-        // console.log (moment(this.state.lunD, "hh:mm").add(this.state.duree, 'minutes').format("HH:mm"))
+        console.log (moment(this.state.lunD, "hh:mm").add(this.state.duree, 'minutes').format("HH:mm"))
 
-        const url = 'http://localhost:8080/api/medecins/' + this.state.id + '/disponibilites'
-        axios.post(url, this.state.dispo)
-            .then(res => {
-                console.log(res)
-            })
-            .catch(res => {
-                console.log(res)
-            })
+      
     }
     render() {
 
@@ -97,7 +118,7 @@ class AjouterDisponibilite extends React.Component {
             <div>
                 <TextField
                     id="date"
-                    label="Birthday"
+                    label="Jour"
                     type="date"
                     name='dat'
                     defaultValue={new Date()}
@@ -125,7 +146,7 @@ class AjouterDisponibilite extends React.Component {
                 </FormControl>
                 <Grid spacing={1} container>
                     <Grid item>
-                        <Typography variant='h5'> lundi</Typography>
+                        {/* <Typography variant='h5'> lundi</Typography> */}
                         <Typography> debut</Typography>
                         <TextField
                             value={this.state.value}
@@ -134,6 +155,8 @@ class AjouterDisponibilite extends React.Component {
                             name='lunD'
 
                         />
+                    </Grid>
+                    <Grid item>
                         <Typography> fin</Typography>
                         <TextField
                             value={this.state.value}
@@ -144,7 +167,7 @@ class AjouterDisponibilite extends React.Component {
                         />
 
                     </Grid>
-                    <Grid item>
+                    {/* <Grid item>
                         <Typography variant='h5'> mardi</Typography>
                         <Typography> debut</Typography>
                         <TextField
@@ -243,7 +266,7 @@ class AjouterDisponibilite extends React.Component {
 
                         />
 
-                    </Grid>
+                    </Grid> */}
                 </Grid>
                 <Button onClick={this.handleSubmit}>Confermer</Button>
             </div>
