@@ -177,7 +177,7 @@ class SearchComp extends React.Component {
 
                             <Grid item>
                                 {/* <Link to='/components/Result'> */}
-                                    <Button type="submit" variant="contained" className={classes.searchbutton} ><Search fontSize="large" /> Recherche</Button>
+                                    <Button onClick={()=> console.log("azeqsdfdgsdgfsd")} type="submit" variant="contained" className={classes.searchbutton} ><Search fontSize="large" /> Recherche</Button>
                                 {/* </Link> */}
                             </Grid>
 

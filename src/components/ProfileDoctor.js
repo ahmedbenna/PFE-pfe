@@ -7,7 +7,7 @@ import {  Avatar, Typography, Paper, Grid, List, ListItem, ListItemIcon, ListIte
 import { withRouter } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
 import DoctorRendezVous from './DoctorRendezVous';
-import ModifierDisponibilite from './ModifierDisponibilite';
+import Disponibilite from './Disponibilite';
 import EditDoctorProfile from './EditDoctorProfile';
 import Doctorprofi from './Doctorprofi'
 
@@ -94,11 +94,11 @@ function ProfileDoctor() {
                                 </List>
                                 <Divider />
                                 <List component="nav" >
-                                    <ListItem button onClick={() =>{setCmp( <ModifierDisponibilite/>)}}>
+                                    <ListItem button onClick={() =>{setCmp( <Disponibilite/>)}}>
                                         <ListItemIcon>
                                             <Alarm />
                                         </ListItemIcon>
-                                        <ListItemText primary='Modifier disponibilite' />
+                                        <ListItemText primary='Disponibilite' />
                                     </ListItem>
                                    
                                         <ListItem button onClick={() =>{setCmp(<EditDoctorProfile/>)}}>
@@ -107,12 +107,12 @@ function ProfileDoctor() {
                                             </ListItemIcon>
                                             <ListItemText primary="Modifier profile" />
                                         </ListItem>
-                                        <ListItem button onClick={() =>{setCmp(<AjouterDisponibilite/>)}}>
+                                        {/* <ListItem button onClick={() =>{setCmp(<AjouterDisponibilite/>)}}>
                                             <ListItemIcon>
                                                 <AccessTime />
                                             </ListItemIcon>
                                             <ListItemText primary="Disponibilite" />
-                                        </ListItem>
+                                        </ListItem> */}
                                     
 
                                 </List>

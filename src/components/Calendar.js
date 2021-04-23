@@ -19,22 +19,10 @@ const styles = {
 class Calendar extends Component {
     
     constructor(props) {
-        const dateDebut ='2021-05-06T10:01'
-        const dateFin =  '2021_05-06T10:59'
-        const url='http://localhost:8080/api/medecins/1/disponibilites?dateDebut=2021-05-06T10:01&dateFin=202105-06-T10:59'
-        
-        axios.get(url)
-        .then(res =>{console.log("dispo",res)
-                    localStorage.setItem("dispo",JSON.stringify(res.data)) })
-              
-        .catch(err => { console.log(err)})
         super(props);
-        const disponibilites=JSON.parse(localStorage.getItem("dispo"))
-        // console.log("dissss",disponibilites.dateTime)
-       
-        this.state = {
-         
-            dispo: disponibilites,
+        this.state={
+            dispo:'',
+           
             d0: new Date (),
             
             d1: new Date(),
@@ -42,9 +30,22 @@ class Calendar extends Component {
             d3: new Date(),
             d4: new Date(),
             d5: new Date(),
-
-
-        };
+        }
+        // localStorage.removeItem("dispo")
+        const dateDebut ='2021-05-06T10:01'
+        const dateFin =  '2021_05-06T10:59'
+        const url='http://localhost:8080/api/medecins/'+1+'/disponibilites'
+        
+        axios.get(url)
+        .then(res =>{console.log("dispo",res)
+                    this.setState({dispo:res.data})})
+              
+        .catch(err => { console.log(err)})
+        
+        // const disponibilites=JSON.parse(localStorage.getItem("dispo"))
+        // console.log("dissss",disponibilites.dateTime)
+       
+       
        
 
     }
@@ -66,34 +67,85 @@ class Calendar extends Component {
                             <Grid container>
                                 <Grid item xs={12}>
                                     <Grid spacing={1} container>
-                                        <Grid item>
-                                            <Typography> {moment(this.state.d0).format('dddd')} </Typography>
-                                            <Typography> {moment(this.state.d0).format("MMM D")}</Typography>
-                                            {/* {this.state.dispo.map(diss =>
-
-                                                <Typography> {moment(diss.dateTime).format('hh:mm')}</Typography>
-                                               
-                                            )} */}
-                                        </Grid>
+                                        
+                                             <Grid item>
+                                             <Typography> {moment(this.state.d0).format('dddd')} </Typography>
+                                             <Typography> {moment(this.state.d0).format("MMM D")}</Typography>
+                                             {
+                                                this.state.dispo.map(diss =>
+                                              (moment(diss.dateTime).isSame(this.state.d0,"day")) ?
+                                             <Typography> {moment(diss.dateTime).format('hh:mm')}</Typography>
+                                             :
+                                             <>
+                                             </>
+                                            
+                                            )}
+                                         </Grid>                                   
+                                       
                                         <Grid item>
                                             <Typography> {moment(this.state.d1).format('dddd')} </Typography>
                                             <Typography> {moment(this.state.d1).format("MMM D")}</Typography>
+                                            {
+                                                this.state.dispo.map(diss =>
+                                              (moment(diss.dateTime).isSame(this.state.d1,"day")) ?
+                                             <Typography> {moment(diss.dateTime).format('hh:mm')}</Typography>
+                                             :
+                                             <>
+                                             </>
+                                            
+                                            )}
                                         </Grid>
                                         <Grid item>
                                             <Typography> {moment(this.state.d2).format('dddd')} </Typography>
                                             <Typography> {moment(this.state.d2).format("MMM D")}</Typography>
+                                            {
+                                                this.state.dispo.map(diss =>
+                                              (moment(diss.dateTime).isSame(this.state.d2,"day")) ?
+                                             <Typography> {moment(diss.dateTime).format('hh:mm')}</Typography>
+                                             :
+                                             <>
+                                             </>
+                                            
+                                            )}
                                         </Grid>
                                         <Grid item>
                                             <Typography> {moment(this.state.d3).format('dddd')} </Typography>
                                             <Typography> {moment(this.state.d3).format("MMM D")}</Typography>
+                                            {
+                                                this.state.dispo.map(diss =>
+                                              (moment(diss.dateTime).isSame(this.state.d3,"day")) ?
+                                             <Typography> {moment(diss.dateTime).format('hh:mm')}</Typography>
+                                             :
+                                             <>
+                                             </>
+                                            
+                                            )}
                                         </Grid>
                                         <Grid item>
                                             <Typography> {moment(this.state.d4).format('dddd')} </Typography>
                                             <Typography> {moment(this.state.d4).format("MMM D")}</Typography>
+                                            {
+                                                this.state.dispo.map(diss =>
+                                              (moment(diss.dateTime).isSame(this.state.d4,"day")) ?
+                                             <Typography> {moment(diss.dateTime).format('hh:mm')}</Typography>
+                                             :
+                                             <>
+                                             </>
+                                            
+                                            )}
                                         </Grid>
                                         <Grid item>
                                             <Typography> {moment(this.state.d5).format('dddd')} </Typography>
                                             <Typography> {moment(this.state.d5).format("MMM D")}</Typography>
+                                            {
+                                                this.state.dispo.map(diss =>
+                                              (moment(diss.dateTime).isSame(this.state.d5,"day")) ?
+                                             <Typography> {moment(diss.dateTime).format('hh:mm')}</Typography>
+                                             :
+                                             <>
+                                             </>
+                                            
+                                            )}
                                         </Grid>
                                     </Grid>
                                 </Grid>
