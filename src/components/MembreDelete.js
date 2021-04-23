@@ -26,6 +26,7 @@ class MembreDelete extends Component {
         super(props)
         this.state = {
             id: this.props.id,
+            open:false,
         }
         console.log(this.state.id)
     }

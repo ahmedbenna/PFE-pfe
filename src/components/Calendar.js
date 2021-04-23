@@ -21,7 +21,7 @@ class Calendar extends Component {
     constructor(props) {
         super(props);
         this.state={
-            dispo:'',
+            dispo:[],
            
             d0: new Date (),
             
@@ -31,10 +31,13 @@ class Calendar extends Component {
             d4: new Date(),
             d5: new Date(),
         }
+        this.state.d1.setDate(this.state.d1.getDate() +1)
+        this.state.d2.setDate(this.state.d2.getDate() +2)
+        this.state.d3.setDate(this.state.d3.getDate() +3)
+        this.state.d4.setDate(this.state.d4.getDate() +4)
+        this.state.d5.setDate(this.state.d5.getDate() +5)
         // localStorage.removeItem("dispo")
-        const dateDebut ='2021-05-06T10:01'
-        const dateFin =  '2021_05-06T10:59'
-        const url='http://localhost:8080/api/medecins/'+1+'/disponibilites'
+        const url='http://localhost:8080/api/medecins/'+props.doc.id+'/disponibilitesAll'
         
         axios.get(url)
         .then(res =>{console.log("dispo",res)
@@ -51,13 +54,10 @@ class Calendar extends Component {
     }
 
     render() {
+        console.log(this.state)
         const { classes } = this.props;
         moment.locale('fr')
-        this.state.d1.setDate(this.state.d1.getDate() +1)
-        this.state.d2.setDate(this.state.d2.getDate() +2)
-        this.state.d3.setDate(this.state.d3.getDate() +3)
-        this.state.d4.setDate(this.state.d4.getDate() +4)
-        this.state.d5.setDate(this.state.d5.getDate() +5)
+        
 
         return (
             <div>
