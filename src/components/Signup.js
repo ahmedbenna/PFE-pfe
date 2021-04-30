@@ -62,11 +62,7 @@ class Signup extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  /*useEffect(() => {
-    if (localStorage.getItem('patientInfo')) {
-      history.push()
-    }
-  })*/
+
 
   handleChange = (e) => {
     this.setState({
@@ -77,7 +73,14 @@ class Signup extends React.Component {
 
   }
 
-
+  getPat (id){
+    const url='http://localhost:8080/api/comptePatients/'+id
+    axios
+        .get(url)
+        .then(res=>{console.log('getmed',res)
+              localStorage.setItem('patientInfo', JSON.stringify(res.data))})
+   
+  }
   handleSubmit = e => {
     e.preventDefault()
     const data = {
@@ -93,15 +96,16 @@ class Signup extends React.Component {
       }
 
     };
-    window.location.reload(false)
+    
 
 
 
 
     axios.post('http://localhost:8080/api/comptePatients', data)
       .then(res =>{
-        localStorage.setItem('patientInfo', JSON.stringify(res.data))
-        console.log(res)
+        this.getPat(res.data.id)
+        this.props.history.push('/')
+
       }
       )
       .catch(err => console.log(err))

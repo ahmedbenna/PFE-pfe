@@ -9,7 +9,7 @@ export default function PatientProtectedRoute({isAuth : isAuth, component : Comp
                     return <Component/>
                 }
                 else{
-                    return (<Redirect to ={{pathname:'/components/Login', state: {from : props.location} }}/>)
+                    return (<Redirect to ={{pathname:'/components/PatientLogin', state: {from : props.location} }}/>)
                 }
                  
 

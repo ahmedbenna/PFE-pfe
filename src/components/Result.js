@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 
 
-import { Container, CssBaseline,  }  from '@material-ui/core/';
+import { Container, CssBaseline, Typography,  }  from '@material-ui/core/';
 import Doctorcard from './Doctorcard';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -38,10 +38,11 @@ class Result extends Component {
             docs:JSON.parse(localStorage.getItem("docs"))
 
         }
-        
+        localStorage.removeItem('dispo')
     }
     
     render(){
+        console.log("docs",this.state)
         const {classes} = this.props;
     return (
         <div className={classes.doctorcard}>
@@ -50,7 +51,8 @@ class Result extends Component {
                 <SearchComp />
             </Container>
             <div className={classes.docs}>
-            {this.state.docs.map(doc =>
+            {(this.state.docs !=[])?(
+            this.state.docs.map(doc =>
                 <Doctorcard 
                 doc={doc}
                 img='../img/doc.png'
@@ -59,7 +61,8 @@ class Result extends Component {
                 address={doc.adresse}
                 ville={doc.ville.ville}
             />
-            )}
+            )):(<Typography>Vide</Typography>)
+        }
 
             
            

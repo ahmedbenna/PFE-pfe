@@ -90,7 +90,14 @@ class DoctorSignup extends Component {
 
         })
     }
-
+    getMed (id){
+        const url='http://localhost:8080/api/medecins/'+id
+        axios
+            .get(url)
+            .then(res=>{console.log('getmed',res)
+                  localStorage.setItem('doctorInfo', JSON.stringify(res.data))})
+       
+      }
 
     handleSubmit = e => {
         e.preventDefault()
@@ -112,10 +119,15 @@ class DoctorSignup extends Component {
             }
         };
         axios.post("http://localhost:8080/api/medecins", data)
-            .then(res => localStorage.setItem('doctorInfo', JSON.stringify(res.data)))
+            .then(res => {
+                this.getMed(res.data.id)
+               
+                this.props.history.push('/')
+                window.location.reload(false)
+            })
             .catch(err => console.log(err))
 
-        window.location.reload(false)
+        // window.location.reload(false)
 
     }
     render() {

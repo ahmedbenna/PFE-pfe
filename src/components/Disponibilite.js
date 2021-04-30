@@ -1,7 +1,7 @@
 import { Typography, Grid } from '@material-ui/core'
 import React from 'react'
 import AjouterDisponibilite from './AjouterDisponibilite'
-import ModifierDisponibilite from './ModifierDisponibilite'
+import AfficherCalendre from './AfficherCalendre'
 
 export default function Disponibilite() {
     return (
@@ -16,7 +16,7 @@ export default function Disponibilite() {
                 <Grid item>
 
                 </Grid>
-                <ModifierDisponibilite/>
+                <AfficherCalendre/>
             </Grid>
             
         </div>

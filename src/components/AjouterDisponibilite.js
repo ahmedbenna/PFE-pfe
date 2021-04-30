@@ -93,6 +93,7 @@ class AjouterDisponibilite extends React.Component {
             axios.post(url, [{ "dateTime": moment(dis).format('yyyy-MM-DDThh:mm') }])
                 .then(res => {
                     console.log(res)
+                    
                 })
                 .catch(res => {
                     console.log(res)
@@ -105,7 +106,7 @@ class AjouterDisponibilite extends React.Component {
 
 
         console.log(moment(this.state.lunD, "hh:mm").add(this.state.duree, 'minutes').format("HH:mm"))
-        window.location.reload(false)
+        
 
 
     }

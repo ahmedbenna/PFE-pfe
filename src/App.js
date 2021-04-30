@@ -26,6 +26,7 @@ import AjouterMembre from './components/AjouterMembre';
 import AjouterVille from './components/AjouterVille';
 import AjouterSpecialite from './components/AjouterSpecialite';
 import PatientLogin from './components/PatientLogin';
+import ConfermerRDV from './components/ConfermerRDV';
 
 
 
@@ -57,6 +58,7 @@ function App() {
           <PatientProtectedRoute path='/components/PatientProfile' component={PatientProfile} isAuth={localStorage.getItem('patientInfo')} />
           <PatientProtectedRoute path='/components/Famille' component={Famille} isAuth={localStorage.getItem('patientInfo')} />
           <PatientProtectedRoute path='/components/AjouterMembre' component={AjouterMembre} isAuth={localStorage.getItem('patientInfo')} />
+          <PatientProtectedRoute path='/components/ConfermerRDV' component={ConfermerRDV} isAuth={localStorage.getItem('patientInfo')} />
 
 
           <Route path='/components/AjouterVille' component={AjouterVille} />
