@@ -44,19 +44,18 @@ class ModifierMembre extends React.Component {
         super(props)
         // let patientData = localStorage.getItem('patientInfo');
         // patientData = JSON.parse(patientData);
+        const pat= props.pat
+        
         this.state = {
-            id: this.props.id,
-            nom: this.props.nom,
-            prenom: this.props.prenom,
-            genre: this.props.genre,
-            dateDeNaissance: moment(this.props.dateDeNaissance).calendar(),
-            telephone: this.props.telephone,
-            adresse: this.props.adresse,
-            // patient: JSON.parse(localStorage.getItem("patientInfo"))
-
+            id:pat.id,
+            nom: pat.nom,
+            prenom: pat.prenom,
+            dateDeNaissance: pat.dateDeNaissance,
+            adresse: pat.adresse,
+            telephone: pat.telephone,
+            genre: pat.genre
+            
         }
-        console.log("idddddd",this.state.id)
-
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -70,8 +69,6 @@ class ModifierMembre extends React.Component {
 
 
     handleSubmit = e => {
-        e.preventDefault()
-        console.log(this.state)
         const data = {
             nom: this.state.nom,
             prenom: this.state.prenom,
@@ -82,15 +79,14 @@ class ModifierMembre extends React.Component {
         };
         console.log(data)
 
-        console.log("pppppppppppp", this.state.id)
-
-
         const url = 'http://localhost:8080/api/patients/'+this.state.id
         axios.put(url, data)
-            .then(res => console.log(res))
+            .then(res => {
+                    window.location.reload(false)
+                    console.log(res)})
             .catch(err => console.log(err));
 
-        window.location.reload(false)
+       
     };
     render() {
         const { classes } = this.props;

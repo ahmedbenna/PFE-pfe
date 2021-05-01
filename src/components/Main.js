@@ -3,6 +3,11 @@ import React from 'react'
 import { withStyles } from '@material-ui/core/styles';
 
 import home from '../img/home.svg'
+import doccard from '../img/docscard.svg'
+
+import appointement from '../img/appointement.svg'
+import fast from '../img/fast.svg'
+import tim from '../img/time.svg'
 
 
 import { Typography, CssBaseline, Grid, } from '@material-ui/core/';
@@ -125,25 +130,30 @@ class Main extends React.Component {
 
 
                 </div>
-                <div >
-                    <Grid container alignItems='center' alignContent='center'  item xs={12} spacing={3}  >
+                <div style={{paddingTop:'50px'}} >
+                    <Grid container direction="column"alignItems="center"justify="center"  item xs={12} spacing={3}  >
                         <Grid item xs={12} spacing={3} >
                             <Typography justify='center' variant="h5" className={classes.text3}>
                                 DÉCOUVREZ LE RENDEZ-VOUS EN LIGNE!
                             </Typography>
                         </Grid>
+                        <Grid item xs={12} spacing={3} >
+                           <img src={appointement} style={{maxWidth:'400px'}}/>
+                        </Grid>
                     </Grid>
                 </div>
-                <div >
-                    <Grid container item xs={12} spacing={3}  >
+                <div style={{paddingTop:'50px'}} >
+                    <Grid container direction="column"alignItems="center"justify="center" item xs={12} spacing={3}  >
                         <Grid item xs={12} spacing={3} >
                             <Typography variant="h5" className={classes.text3}>
                                 Pourquoi prendre rendez-vous online ?
                         </Typography>
                         </Grid>
+                        </Grid>
+                        <Grid container item xs={12} spacing={3} >
                         <Grid item xs={12} sm={4} className={classes.paper} >
                             <MainCard
-                                imgURL=""
+                                imgURL={tim}
                                 name="24/7"
                                 discription="texte"
                             />
@@ -157,7 +167,7 @@ class Main extends React.Component {
                         </Grid>
                         <Grid item xs={12} sm={4} className={classes.paper} >
                             <MainCard
-                                imgURL=""
+                                imgURL={fast}
                                 name="Rapide"
                                 discription="texte"
                             />

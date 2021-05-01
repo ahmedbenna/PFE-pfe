@@ -44,7 +44,8 @@ class MembreDelete extends Component {
     handleDelete = e => {
         const url = 'http://localhost:8080/api/patients/' + this.state.id
         axios.delete(url)
-            .then(res => { console.log(res) })
+            .then(res => { console.log(res) 
+                window.location.reload(false)})
             .catch(err => { console.log(err) })
         this.setState({ open: false })
 

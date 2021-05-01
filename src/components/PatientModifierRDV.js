@@ -7,6 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 
 import {Edit} from '@material-ui/icons'
+import Calendar from './Calendar';
 
 
 const styles = {
@@ -37,45 +38,17 @@ const styles = {
 class PatientModifierRDV extends Component {
     constructor(props) {
         super(props)
-        const pat=props.pat
+        // const pat=props.pat
         const rdv = props.rdv
         this.state = {
 
-            idPat:pat.id,
+            // idPat:pat.id,
             idRDV: rdv.id,
             
            
         }
     }
-    // componentDidMount() {
-    //     this.getVille();
-    //     this.getSpecialite();
-    // }
-    // getVille = () => {
-    //     axios
-    //         .get("http://localhost:8080/api/villes")
-    //         .then(data => {
-    //             this.setState({ villes: data.data })
-    //             console.log(data)
-    //         })
-    //         .catch(err => {
-    //             console.log(err);
-    //             return null;
-    //         });
-    // };
-    
-    // getSpecialite = () => {
-    //     axios
-    //         .get("http://localhost:8080/api/specialites")
-    //         .then(data => {
-    //             this.setState({ specialites: data.data })
-    //             console.log(data)
-    //         })
-    //         .catch(err => {
-    //             console.log(err);
-    //             return null;
-    //         });
-    // };
+   
     handleChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
@@ -114,27 +87,27 @@ class PatientModifierRDV extends Component {
                 <Button variant="text" color="primary" onClick={handleClickOpen}>
                    <Edit />
                 </Button>
-                <Dialog open={this.state.open} onClose={handleClose} aria-labelledby="form-dialog-title">
+                <Dialog open={this.state.open}  onClose={handleClose} aria-labelledby="form-dialog-title">
                     <DialogTitle id="form-dialog-title">modifier rdv</DialogTitle>
-                    <DialogContent>
-                        <form onSubmit={this.handleSubmit} style={{ padding: '20px' }}>
+                    <DialogContent style={{width:'800px'}}>
+                        <form onSubmit={this.handleSubmit} >
 
                             <Grid spacing={2} justifyContent='center' container sx={11}>
                                 <Grid item>
-
+                                    <Calendar doc={this.props.doc}/>
                                 </Grid>                              
                             </Grid>
 
                         </form>
                     </DialogContent>
 
-                    <DialogActions>
+                    {/* <DialogActions>
                         <Button onClick={this.handleSubmit}>modifier</Button>
 
                         <Button onClick={handleClose} color="primary">
                             Annuler
                         </Button>
-                    </DialogActions>
+                    </DialogActions> */}
                 </Dialog>
                 
             </div >
@@ -142,4 +115,4 @@ class PatientModifierRDV extends Component {
     }
 }
 
-export default (withStyles(styles)(ModifierMedecin))
+export default (withStyles(styles)(PatientModifierRDV))

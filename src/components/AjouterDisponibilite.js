@@ -76,7 +76,7 @@ class AjouterDisponibilite extends React.Component {
         let dis = moment(this.state.dat)
         let dis2 = moment(this.state.dat)
 
-        // console.log("let dis",moment(dis).format(),'t',moment(t).format('hh:mm'))
+        // console.log("let dis",moment(dis).format(),'t',moment(t).format('HH:mm'))
         dis = moment(dis).add(m, 'minutes').format();
         dis = moment(dis).add(h, 'hour').format()
 
@@ -86,11 +86,11 @@ class AjouterDisponibilite extends React.Component {
         // console.log("dis",moment(dis).format('mm'))
 
         while (((moment(dis).isBefore(dis2)) && (moment(dis).isSame(this.state.dat, "day"))) || (moment(dis).isSame(dis2))) {
-            // this.setState({ dispo : [...this.state.dispo,  moment(dis).format('yyyy-MM-DDThh:mm')]})
+            // this.setState({ dispo : [...this.state.dispo,  moment(dis).format('yyyy-MM-DDTHH:mm')]})
             // console.log('azeazeaze', moment(dis).format())
 
             const url = 'http://localhost:8080/api/medecins/' + this.state.id + '/disponibilites'
-            axios.post(url, [{ "dateTime": moment(dis).format('yyyy-MM-DDThh:mm') }])
+            axios.post(url, [{ "dateTime": moment(dis).format('yyyy-MM-DDTHH:mm') }])
                 .then(res => {
                     console.log(res)
                     
@@ -105,7 +105,7 @@ class AjouterDisponibilite extends React.Component {
         }
 
 
-        console.log(moment(this.state.lunD, "hh:mm").add(this.state.duree, 'minutes').format("HH:mm"))
+        console.log(moment(this.state.lunD, "HH:mm").add(this.state.duree, 'minutes').format("HH:mm"))
         
 
 

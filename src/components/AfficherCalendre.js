@@ -30,13 +30,13 @@ import { addDays, isSameDay } from 'date-fns';
 //   }
 // }
 
-const now = new Date();
-const tomorrow = addDays(now, 1);
-const in3Days = addDays(now, 3);
-const in5Days = addDays(now, 5);
-console.log("aaaa", now);
+// const now = new Date();
+// const tomorrow = addDays(now, 1);
+// const in3Days = addDays(now, 3);
+// const in5Days = addDays(now, 5);
+// // console.log("aaaa", now);
 
-const disabledDates = [tomorrow, in3Days, in5Days, addDays(now, 0)];
+// const disabledDates = [tomorrow, in3Days, in5Days, addDays(now, 0)];
 export default class AfficherCalendre extends React.Component {
   constructor() {
     super();
@@ -47,7 +47,7 @@ export default class AfficherCalendre extends React.Component {
       dispo:[],
       
     };
-    this.checkdates = disabledDates;
+    // this.checkdates = disabledDates;
 
   }
   
@@ -95,7 +95,7 @@ render(){
         //   }
         // }}
       />
-      {console.log(moment(this.state.today).format("MM-DD-yyyy"))}
+      {console.log(moment(this.state.today).format("yyyy-MM-DD"))}
     
       <RdvParJour
         today={this.state.today}

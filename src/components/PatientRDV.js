@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import axios from 'axios'
 import moment from 'moment';
 import SupprimerRDV from './SupprimerRDV';
+import PatientModifierRDV from './PatientModifierRDV';
 
 const styles = {
     
@@ -40,6 +41,8 @@ class PatientRDV extends React.Component {
                 <div>
                 <Typography>rdv time: {moment(r.disponibilite.dateTime).calendar()}</Typography>
                 <SupprimerRDV rdv={r.id}/>
+                <PatientModifierRDV doc={r.disponibilite.medecin}  rdv={r.id}/>
+                
                 
                 </div>
                 )

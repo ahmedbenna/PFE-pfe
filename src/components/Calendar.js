@@ -48,9 +48,14 @@ class Calendar extends Component {
         axios.get(url)
             .then(res => {
                 console.log("dispo", res)
-                let sorteDispo = res.data.sort((a, b) => new moment(b.dateTime, "YYYY-MM-DDThh:mm") - new moment(a.dateTime, "YYYY-MM-DDThh:mm"))
-                console.log("sssssss", sorteDispo)
-                this.setState({ dispo: res.data })
+                // let sorteDispo = res.data.sort((a, b) => new moment(b.dateTime, "YYYY-MM-DDTHH:mm") - new moment(a.dateTime, "YYYY-MM-DDTHH:mm"))
+                // console.log("sssssss", sorteDispo)
+                
+                const newarr = res.data.sort((a, b) => {
+                    return moment(a.dateTime).diff(b.dateTime);
+                  });
+                console.log("razzrazeazezaeae",newarr)
+                this.setState({ dispo: newarr })
             })
 
             .catch(err => { console.log(err) })
@@ -66,7 +71,7 @@ class Calendar extends Component {
 
     // sortDispo(){
     //     console.log("not sorted", this.state.dispo);
-    //     let sorteDispo = this.state.dispo.sort((a, b) =>new moment(b.dateTime).format("YYYY-MM-DDThh:mm") - new moment(a.dateTime).format("YYYY-MM-DDThh:mm"))
+    //     let sorteDispo = this.state.dispo.sort((a, b) =>new moment(b.dateTime).format("YYYY-MM-DDTHH:mm") - new moment(a.dateTime).format("YYYY-MM-DDTHH:mm"))
     //     console.log("sorted",sorteDispo)
 
     //     this.setState({dispo:sorteDispo})
@@ -82,22 +87,31 @@ class Calendar extends Component {
 
     }
     nextWeek() {
-        this.setState({ d0: moment(this.state.d0, "YYYY-MM-DDThh:mm").add(6, 'days') })
-        this.setState({ d1: moment(this.state.d1, "YYYY-MM-DDThh:mm").add(6, 'days') })
-        this.setState({ d2: moment(this.state.d2, "YYYY-MM-DDThh:mm").add(6, 'days') })
-        this.setState({ d3: moment(this.state.d3, "YYYY-MM-DDThh:mm").add(6, 'days') })
-        this.setState({ d4: moment(this.state.d4, "YYYY-MM-DDThh:mm").add(6, 'days') })
-        this.setState({ d5: moment(this.state.d5, "YYYY-MM-DDThh:mm").add(6, 'days') })
+        this.setState({ d0: moment(this.state.d0, "YYYY-MM-DDTHH:mm").add(6, 'days') })
+        this.setState({ d1: moment(this.state.d1, "YYYY-MM-DDTHH:mm").add(6, 'days') })
+        this.setState({ d2: moment(this.state.d2, "YYYY-MM-DDTHH:mm").add(6, 'days') })
+        this.setState({ d3: moment(this.state.d3, "YYYY-MM-DDTHH:mm").add(6, 'days') })
+        this.setState({ d4: moment(this.state.d4, "YYYY-MM-DDTHH:mm").add(6, 'days') })
+        this.setState({ d5: moment(this.state.d5, "YYYY-MM-DDTHH:mm").add(6, 'days') })
     }
 
     prevWeek() {
-        this.setState({ d0: moment(this.state.d0, "YYYY-MM-DDThh:mm").subtract(6, 'days') })
-        this.setState({ d1: moment(this.state.d1, "YYYY-MM-DDThh:mm").subtract(6, 'days') })
-        this.setState({ d2: moment(this.state.d2, "YYYY-MM-DDThh:mm").subtract(6, 'days') })
-        this.setState({ d3: moment(this.state.d3, "YYYY-MM-DDThh:mm").subtract(6, 'days') })
-        this.setState({ d4: moment(this.state.d4, "YYYY-MM-DDThh:mm").subtract(6, 'days') })
-        this.setState({ d5: moment(this.state.d5, "YYYY-MM-DDThh:mm").subtract(6, 'days') })
+        this.setState({ d0: moment(this.state.d0, "YYYY-MM-DDTHH:mm").subtract(6, 'days') })
+        this.setState({ d1: moment(this.state.d1, "YYYY-MM-DDTHH:mm").subtract(6, 'days') })
+        this.setState({ d2: moment(this.state.d2, "YYYY-MM-DDTHH:mm").subtract(6, 'days') })
+        this.setState({ d3: moment(this.state.d3, "YYYY-MM-DDTHH:mm").subtract(6, 'days') })
+        this.setState({ d4: moment(this.state.d4, "YYYY-MM-DDTHH:mm").subtract(6, 'days') })
+        this.setState({ d5: moment(this.state.d5, "YYYY-MM-DDTHH:mm").subtract(6, 'days') })
     }
+    // componentDidMount() {
+    //     if(this.state.dispo){
+    //         const newarr = this.state.dispo.sort((a, b) => {
+    //             return moment(a.dateTime).diff(b.dateTime);
+    //           });
+    //           console.log("razzrazeazezaeae",newarr)
+    //     }
+    // }
+    
     componentDidUpdate(prevProps, prevState) {
         if (prevState.counter < this.state.counter) {
             this.nextWeek()
@@ -139,7 +153,7 @@ class Calendar extends Component {
                                                                     <Link onClick={() => this.handleRDV(diss)} to='/components/ConfermerRDV' >
                                                                         <Grid item>
                                                                             <Button onClick={() => this.handleRDV(diss)}>
-                                                                                <Typography > {moment(diss.dateTime).format('hh:mm')}</Typography>
+                                                                                <Typography > {moment(diss.dateTime).format('HH:mm')}</Typography>
                                                                             </Button>
 
                                                                         </Grid>
@@ -164,7 +178,7 @@ class Calendar extends Component {
                                                                     <Link onClick={() => this.handleRDV(diss)} to='/components/ConfermerRDV' >
                                                                         <Grid item>
                                                                             <Button onClick={() => this.handleRDV(diss)}>
-                                                                                <Typography > {moment(diss.dateTime).format('hh:mm')}</Typography>
+                                                                                <Typography > {moment(diss.dateTime).format('HH:mm')}</Typography>
                                                                             </Button>
 
                                                                         </Grid>
@@ -188,7 +202,7 @@ class Calendar extends Component {
                                                                     <Link onClick={() => this.handleRDV(diss)} to='/components/ConfermerRDV' >
                                                                         <Grid item>
                                                                             <Button onClick={() => this.handleRDV(diss)}>
-                                                                                <Typography > {moment(diss.dateTime).format('hh:mm')}</Typography>
+                                                                                <Typography > {moment(diss.dateTime).format('HH:mm')}</Typography>
                                                                             </Button>
 
                                                                         </Grid>
@@ -211,7 +225,7 @@ class Calendar extends Component {
                                                                     <Link onClick={() => this.handleRDV(diss)} to='/components/ConfermerRDV' >
                                                                         <Grid item>
                                                                             <Button onClick={() => this.handleRDV(diss)}>
-                                                                                <Typography > {moment(diss.dateTime).format('hh:mm')}</Typography>
+                                                                                <Typography > {moment(diss.dateTime).format('HH:mm')}</Typography>
                                                                             </Button>
 
                                                                         </Grid>
@@ -234,7 +248,7 @@ class Calendar extends Component {
                                                                     <Link onClick={() => this.handleRDV(diss)} to='/components/ConfermerRDV' >
                                                                         <Grid item>
                                                                             <Button onClick={() => this.handleRDV(diss)}>
-                                                                                <Typography > {moment(diss.dateTime).format('hh:mm')}</Typography>
+                                                                                <Typography > {moment(diss.dateTime).format('HH:mm')}</Typography>
                                                                             </Button>
 
                                                                         </Grid>
@@ -257,7 +271,7 @@ class Calendar extends Component {
                                                                     <Link onClick={() => this.handleRDV(diss)} to='/components/ConfermerRDV' >
                                                                         <Grid item>
                                                                             <Button onClick={() => this.handleRDV(diss)}>
-                                                                                <Typography > {moment(diss.dateTime).format('hh:mm')}</Typography>
+                                                                                <Typography > {moment(diss.dateTime).format('HH:mm')}</Typography>
                                                                             </Button>
 
                                                                         </Grid>

@@ -6,7 +6,7 @@ import { Typography, CssBaseline, CardMedia, CardContent, Card,}  from '@materia
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
+    maxWidth: 200,
   },
 });
 
@@ -21,6 +21,7 @@ export default function MainCard(props) {
             component="img"
             alt={props.name}
             height="140"
+            width='200'
             image={props.imgURL}
             title={props.name}
           />

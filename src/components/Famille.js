@@ -77,13 +77,7 @@ class Famille extends Component {
                                 </Grid>
                                 <Grid item>
                                     <ModifierMembre
-                                        id={member.id}
-                                        nom={member.nom}
-                                        prenom={member.prenom}
-                                        dateDeNaissance={member.dateDeNaissance}
-                                        adresse={member.adresse}
-                                        telephone={member.telephone}
-                                        genre={member.genre}
+                                        pat={member}
                                     />
                                     
                                 </Grid>
