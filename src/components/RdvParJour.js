@@ -31,13 +31,26 @@ export default class RdvParJour extends React.Component {
     setDate(){
         const data=[]
         this.state.tousRDV.map(rdv=>
-            
+
             data.push()
         )
        
     }
+    componentDidUpdate(prevProps, prevState) {
+        if (this.props.today !== prevProps.today) {
+            this.setState({currentDate:this.props.today})
+        }
+        
+        
+    }
+    
+       
+    
+    
     
     render() {
+        // 
+        console.log(this.props.today)
         return (
             <Paper>
                 <Scheduler
