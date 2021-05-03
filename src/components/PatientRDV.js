@@ -77,6 +77,7 @@ class PatientRDV extends React.Component {
                                                             <Grid item>
                                                                 <Typography>rdv time: {moment(r.disponibilite.dateTime).calendar()}</Typography>
                                                                 <Typography>medecin:{r.disponibilite.medecin.nom} {r.disponibilite.medecin.prenom} </Typography>
+                                                                <Typography>adresse:{r.disponibilite.medecin.adresse} </Typography>
 
                                                             </Grid>
                                                             <Grid direction="column" alignContent='flex-end' justify='flex-end' item>
@@ -119,7 +120,7 @@ class PatientRDV extends React.Component {
                                                                 <Grid item>
                                                                     <Typography>rdv time: {moment(r.disponibilite.dateTime).calendar()}</Typography>
                                                                     <Typography>medecin:{r.disponibilite.medecin.nom} {r.disponibilite.medecin.prenom} </Typography>
-
+                                                                    <Typography>adresse:{r.disponibilite.medecin.adresse} </Typography>
                                                                 </Grid>
                                                                 <Grid direction="column" alignContent='flex-end' justify='flex-end' item>
                                                                     <SupprimerRDV rdv={r.id} />

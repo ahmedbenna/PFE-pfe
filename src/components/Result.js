@@ -56,6 +56,7 @@ class Result extends Component {
                 <Doctorcard 
                 doc={doc}
                 img='../img/doc.png'
+                prenom={doc.prenom }
                 nom= {doc.nom} 
                 specialite={doc.specialite.libelle}
                 address={doc.adresse}

@@ -10,6 +10,8 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 
 import { Link } from 'react-router-dom'
+import logo from '../img/Logo.png'
+
 
 
 
@@ -27,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
       textDecoration: 'none', 
   },
   appbar:{
-    background :'#8ADEFF',
+    background :'#13568B',
   },
 
 
@@ -58,13 +60,11 @@ export default function PatientNav(props) {
       <AppBar position="static" className={classes.appbar} >
       <Toolbar>
           <Link to='/'>              
-              <img src="../img/Logo.png" height="40" width="40" alt="logo"/>
+              <img src={logo} height="40" width="40" alt="logo"/>
           </Link>
           <div  className={classes.btn}>
-            <Link to='/components/Famille'className={classes.link}> 
-              <Button>Famille</Button>
-            </Link>
-            <Button onClick={handleopenmenu} ><AccountCircleIcon />{props.nom} {props.prenom}</Button> 
+            
+            <Button style={{color:'#FFFFFF'}} onClick={handleopenmenu} ><AccountCircleIcon />{props.nom} {props.prenom}</Button> 
             <Menu
               id="Patients-menu"
               anchorEl={anchorEl}

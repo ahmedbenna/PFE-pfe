@@ -85,7 +85,7 @@ class AjouterDisponibilite extends React.Component {
 
         // console.log("dis",moment(dis).format('mm'))
 
-        while (((moment(dis).isBefore(dis2)) && (moment(dis).isSame(this.state.dat, "day"))) || (moment(dis).isSame(dis2))) {
+        while (((moment(dis).isBefore(dis2))) || (moment(dis).isSame(dis2))) {
             // this.setState({ dispo : [...this.state.dispo,  moment(dis).format('yyyy-MM-DDTHH:mm')]})
             // console.log('azeazeaze', moment(dis).format())
 

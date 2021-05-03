@@ -11,6 +11,8 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 
 import { Link } from 'react-router-dom'
+import logo from '../img/Logo.png'
+
 
 
 
@@ -28,7 +30,7 @@ link:{
     textDecoration: 'none', 
 },
 appbar:{
-  background :'#8ADEFF',
+  background :'#00B2B1',
 },
 
 
@@ -59,7 +61,7 @@ export default function DoctorNav(props) {
       <AppBar position="static" className={classes.appbar} >
       <Toolbar>
           <Link to='/'>              
-              <img src="../img/Logo.png" height="40" width="40" alt="logo"/>
+              <img src={logo} height="40" width="40" alt="logo"/>
           </Link>
           <div className={classes.btn}>
             <Link to='/components/DoctorRendezVous'className={classes.link}>

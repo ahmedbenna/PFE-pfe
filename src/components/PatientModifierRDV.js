@@ -8,6 +8,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 import {Edit} from '@material-ui/icons'
 import Calendar from './Calendar';
+import CalendarRDVModifier from './CalendarRDVModifier';
 
 
 const styles = {
@@ -38,15 +39,11 @@ const styles = {
 class PatientModifierRDV extends Component {
     constructor(props) {
         super(props)
-        // const pat=props.pat
-        const rdv = props.rdv
-        this.state = {
+        this.state={
 
-            // idPat:pat.id,
-            idRDV: rdv.id,
-            
-           
         }
+        
+        
     }
    
     handleChange = (e) => {
@@ -57,20 +54,7 @@ class PatientModifierRDV extends Component {
         })
     }
 
-    handleSubmit = e => {
-        this.setState({ open: false })
-        const data = {
-            
-        };
-        console.log(data)
-
-        const url = "http://localhost:8080/api/rendezvous/"+this.state.idRDV
-        axios.put(url, data)
-            .then(res => {console.log(res)
-                        window.location.reload(false)
-                    })
-            .catch(err => console.log(err));
-    };
+   
     render() {
         const { classes } = this.props;
 
@@ -90,11 +74,11 @@ class PatientModifierRDV extends Component {
                 <Dialog open={this.state.open}  onClose={handleClose} aria-labelledby="form-dialog-title">
                     <DialogTitle id="form-dialog-title">modifier rdv</DialogTitle>
                     <DialogContent style={{width:'800px'}}>
-                        <form onSubmit={this.handleSubmit} >
+                        <form  >
 
                             <Grid spacing={2} justifyContent='center' container sx={11}>
                                 <Grid item>
-                                    <Calendar doc={this.props.doc}/>
+                                    <CalendarRDVModifier idRDV={this.props.rdv} doc={this.props.doc}/>
                                 </Grid>                              
                             </Grid>
 

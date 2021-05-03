@@ -3,10 +3,22 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
 import { Typography } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
 import RdvParJour from './RdvParJour';
 import axios from 'axios'
 import { addDays, isSameDay } from 'date-fns';
 
+const styles = {
+
+  link: {
+      textDecoration: 'none',
+      color: 'rgb(0 35 75)'
+  },
+  day:{
+    color:"#AFF231"
+  }
+
+};
 // function getRDV() {
 //   const url = ''
 //   axios
@@ -37,7 +49,9 @@ import { addDays, isSameDay } from 'date-fns';
 // // console.log("aaaa", now);
 
 // const disabledDates = [tomorrow, in3Days, in5Days, addDays(now, 0)];
-export default class AfficherCalendre extends React.Component {
+
+
+ class AfficherCalendre extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -73,13 +87,28 @@ export default class AfficherCalendre extends React.Component {
   
 
 render(){
-  console.log(this.state)
+  const { classes } = this.props;
   return (
     <div>
       <Calendar
         onChange={(a,event)=>{this.setState({today:a})}}
         value={this.state.today}
-        // tileClassName={({ date }) => {
+        // {this.state.dispo.map(diss=>{
+          tileClassName={({ activeStartDate, date, view }) =>
+                        
+                          view === 'month' &&(moment(date,'YYYY-MM-DD').isSame(moment('2021-05-06'))) ? 
+                          classes.day : null
+                          
+                        
+                      }
+                      tileClassName={({ activeStartDate, date, view }) =>
+                        
+                          view === 'month' &&(moment(date,'YYYY-MM-DD').isSame(moment('2021-05-07'))) ? 
+                          classes.day : null
+                          
+                      }
+                  // })}
+          //  date }) => {
         //   const isOnList = moment(this.state.dispo.dateTime,'yyyy-mm-DDThh:mm').some((data, index) => {
         //     let datedata = new Date(data);
         //     let dateOne = moment(date).format("L");
@@ -95,7 +124,7 @@ render(){
         //   }
         // }}
       />
-      {console.log(moment(this.state.today).format("yyyy-MM-DD"))}
+      {/* {console.log(moment(this.state.today).format("yyyy-MM-DD"))} */}
     
       <RdvParJour
         today={this.state.today}
@@ -104,3 +133,4 @@ render(){
     </div>
   );
 }}
+export default withStyles (styles)(AfficherCalendre)

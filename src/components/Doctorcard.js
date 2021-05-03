@@ -56,7 +56,7 @@ export default function Doctorcard(props) {
             </Grid>
             <Grid item>
               <Typography className={classes.nom}>
-                Dr.{props.nom}{props.prenom}
+                Dr.{props.nom} {props.prenom}
               </Typography>
               <Typography className={classes.specialite}>
                 {props.specialite}
