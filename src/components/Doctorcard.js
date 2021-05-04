@@ -14,6 +14,9 @@ const useStyles = makeStyles((theme) => ({
     height: theme.spacing(18),
   },
   card: {
+    borderStyle:'groove',
+    borderRadios:'10px',
+
     maxWidth: '1000px',
     backgroundColor: '#FFFFFF',
     marginTop: '50px',
@@ -39,6 +42,8 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '300',
     fontSize: '15px',
   },
+  root:{
+  }
 
 }))
 
@@ -49,7 +54,7 @@ export default function Doctorcard(props) {
     <div className={classes.root}>
       <CssBaseline />
       <Grid container className={classes.card}>
-        <Grid item>
+        <Grid item xs={12} md={4}>
           <Grid container >
             <Grid item style={{ padding: '10px' }}>
               <Avatar className={classes.image} src={props.img} />

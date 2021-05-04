@@ -30,8 +30,12 @@ link:{
     textDecoration: 'none', 
 },
 appbar:{
-  background :'#00B2B1',
+  background :'#C75D7D',
 },
+button:{
+  color:'#FFFFFF',
+  // backgroundColor:'#'
+}
 
 
 }));
@@ -64,10 +68,8 @@ export default function DoctorNav(props) {
               <img src={logo} height="40" width="40" alt="logo"/>
           </Link>
           <div className={classes.btn}>
-            <Link to='/components/DoctorRendezVous'className={classes.link}>
-              <Button  >mes rendez-vous</Button>
-            </Link>
-            <Button  onClick={handleopenmenu}><AccountCircleIcon />  {props.nom}  {props.prenom}</Button>          
+            
+            <Button className={classes.button}  onClick={handleopenmenu}><AccountCircleIcon />  {props.nom}  {props.prenom}</Button>          
             <Menu
               id="Patients-menu"
               anchorEl={anchorEl}

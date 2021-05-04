@@ -16,7 +16,10 @@ const styles = {
       color: 'rgb(0 35 75)'
   },
   day:{
-    color:"#AFF231"
+    color:"#FFFFFF",
+    backgroundColor:"#00e676",
+    borderRadius:' 25px',
+
   }
 
 };

@@ -96,8 +96,15 @@ class SearchComp extends React.Component {
             axios.get(url)
                 .then(res => {
                     console.log("recherche",res.data)
+                    localStorage.removeItem('docs')
+
                     localStorage.setItem('docs',JSON.stringify(res.data))
-                    this.props.history.push('/components/Result')
+                    // (window.location.pathname==="/components/Result") ?
+                    // ( window.location.reload(false))
+                    // :
+                    // ( 
+                        this.props.history.push('/components/Result')
+                    // )
                 })
                 .catch(res =>
                     console.log(res))
@@ -106,9 +113,16 @@ class SearchComp extends React.Component {
             const url = 'http://localhost:8080/api/specialites/'+this.state.specialite+'/medecins'
             axios.get(url)
                 .then(res => {
+                    localStorage.removeItem('docs')
+
                     localStorage.setItem('docs',JSON.stringify(res.data))
                     console.log("recherche",res.data)
-                    this.props.history.push('/components/Result')
+                    // (window.location.pathname ==="/components/Result") ?
+                    // ( window.location.reload(false))
+                    // :
+                    // ( 
+                        this.props.history.push('/components/Result')
+                    // )
                    
                 })
                 .catch(res =>
@@ -118,9 +132,16 @@ class SearchComp extends React.Component {
             const url = 'http://localhost:8080/api/villes/'+this.state.ville+'/medecins'
             axios.get(url)
                 .then(res => {
+                    localStorage.removeItem('docs')
+
                     console.log("recherche",res.data)
                     localStorage.setItem('docs',JSON.stringify(res.data))
-                    this.props.history.push('/components/Result')
+                    // (window.location.pathname === "/components/Result") ?
+                    // ( window.location.reload(false))
+                    // :
+                    // ( 
+                        this.props.history.push('/components/Result')
+                        // )
                 })
                 .catch(res =>
                     console.log(res))
@@ -130,6 +151,7 @@ class SearchComp extends React.Component {
 
     }
     render() {
+        console.log(window.location.pathname)
         const { classes } = this.props;
 
         return (

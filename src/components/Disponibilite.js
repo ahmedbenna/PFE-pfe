@@ -6,7 +6,7 @@ import AfficherCalendre from './AfficherCalendre'
 export default function Disponibilite() {
     return (
         <div>
-            <Grid container>
+            <Grid container direction="column" alignItems="center" justify="center">
                 <Grid item>
                     <Typography variant='h5'> Ajouter disponibilites </Typography>
                 </Grid>
@@ -14,9 +14,9 @@ export default function Disponibilite() {
                     <AjouterDisponibilite/>
                 </Grid>
                 <Grid item>
-
-                </Grid>
                 <AfficherCalendre/>
+                </Grid>
+                
             </Grid>
             
         </div>
