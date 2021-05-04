@@ -4,9 +4,10 @@ import 'react-calendar/dist/Calendar.css';
 import moment from 'moment'
 import { Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-import RdvParJour from './RdvParJour';
+import RdvParJour from './DispoParJour';
 import axios from 'axios'
 import { addDays, isSameDay } from 'date-fns';
+import DispoParJour from './DispoParJour';
 
 const styles = {
 
@@ -76,10 +77,11 @@ const styles = {
     const url='http://localhost:8080/api/medecins/'+doc.id+'/disponibilitesAll'
     axios
           .get(url)
-          .then(res=>{this.setState({dispo:res.data})})
+          .then(res=>{ console.log(res)
+            this.setState({dispo:res.data})})
           .catch(err=>{console.log(err)})
 
-          console.log(this.state)
+          
   }
   componentDidMount() {
     this.getDispo()
@@ -87,46 +89,39 @@ const styles = {
   
 
 render(){
+  console.log("dispo",this.state.dispo)
   const { classes } = this.props;
   return (
     <div>
       <Calendar
+        locale="fr-fr"
         onChange={(a,event)=>{this.setState({today:a})}}
         value={this.state.today}
         // {this.state.dispo.map(diss=>{
-          tileClassName={({ activeStartDate, date, view }) =>
-                        
-                          view === 'month' &&(moment(date,'YYYY-MM-DD').isSame(moment('2021-05-06'))) ? 
-                          classes.day : null
-                          
-                        
-                      }
+          
                       tileClassName={({ activeStartDate, date, view }) =>
+                      {
+                        const isOnList = this.state.dispo.some((data, index) => {
+                          let datedata = new Date(data.dateTime);
+                          let dateOne = moment(date,'YYYY-MM-DD').format('YYYY-MM-DD');
+                          let datetwo = moment(data.dateTime,'YYYY-MM-DD').format('YYYY-MM-DD');
+                          return dateOne === datetwo;
+                        });
+            
+                        if (isOnList) {
+                          return classes.day;
+                        } else {
+                          return null;
+                        }
+                      }
                         
-                          view === 'month' &&(moment(date,'YYYY-MM-DD').isSame(moment('2021-05-07'))) ? 
-                          classes.day : null
+                          // view === 'month' && (moment(date,'YYYY-MM-DD').isSame(moment('2021-05-09'))) ? 
+                          // classes.day : null
                           
                       }
-                  // })}
-          //  date }) => {
-        //   const isOnList = moment(this.state.dispo.dateTime,'yyyy-mm-DDThh:mm').some((data, index) => {
-        //     let datedata = new Date(data);
-        //     let dateOne = moment(date).format("L");
-        //     let datetwo = moment(datedata).format("L");
-        //     console.log('aaaaaaaa',datetwo)
-        //     return dateOne === datetwo;
-        //   });
-
-        //   if (isOnList) {
-        //     return "testdata";
-        //   } else {
-        //     return null;
-        //   }
-        // }}
-      />
-      {/* {console.log(moment(this.state.today).format("yyyy-MM-DD"))} */}
     
-      <RdvParJour
+      />    
+      <DispoParJour
         today={this.state.today}
         // tousRDV={tousRDV}
       />

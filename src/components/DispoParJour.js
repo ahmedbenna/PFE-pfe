@@ -20,7 +20,7 @@ import DisponibiliteDelete from './DisponibiliteDelete';
 
 
 
-export default class RdvParJour extends React.Component {
+export default class DispoParJour extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -144,7 +144,7 @@ export default class RdvParJour extends React.Component {
                         (
                             <Grid container>
                                 <Grid item>
-                                    <Typography> disponible  : {moment(diss.dateTime, 'YYYY-MM-DDTHH:mm').calendar()}  </Typography>    
+                                    <Typography> disponible a : {moment(diss.dateTime, 'YYYY-MM-DDTHH:mm').format('HH:mm')}  </Typography>    
                                 </Grid>
                                 <Grid item>
                                     <DisponibiliteDelete id={diss.id}/>

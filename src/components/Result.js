@@ -29,17 +29,29 @@ const styles = {
 };
 
 class Result extends Component {
-    state ={
-        docs : []
-    }
+   
     constructor(){
         super();
         this.state={
-            docs:JSON.parse(localStorage.getItem("docs"))
+            docs: JSON.parse(localStorage.getItem("docs"))
 
         }
         localStorage.removeItem('dispo')
     }
+    getDocs() {
+        this.setState({docs:JSON.parse(localStorage.getItem("docs"))})
+
+    }
+    
+  
+
+    componentDidUpdate(prevProps, prevState) {
+        // this.setState({docs:JSON.parse(localStorage.getItem("docs"))})        
+        if (prevState.docs !== this.state.docs) {
+            this.setState({docs:JSON.parse(localStorage.getItem("docs"))})       
+        }
+    }
+    
     
     render(){
         console.log("docs",this.state)
@@ -51,7 +63,7 @@ class Result extends Component {
                 <SearchComp />
             </Container>
             <div className={classes.docs}>
-            {(this.state.docs !=[])?(
+            {(this.state.docs !==[])?(
             this.state.docs.map(doc =>
                 <Doctorcard 
                 doc={doc}
