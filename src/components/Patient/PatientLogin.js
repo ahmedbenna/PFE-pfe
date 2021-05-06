@@ -2,7 +2,7 @@ import React from 'react'
 import { Container, CssBaseline, Grid, Button, Divider } from '@material-ui/core/';
 import Login from './Login';
 import Signup from './Signup';
-import loginImg from '../img/login.svg'
+import loginImg from '../../img/login.svg'
 import { makeStyles } from '@material-ui/core/styles';
 
 

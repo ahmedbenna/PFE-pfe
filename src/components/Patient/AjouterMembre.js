@@ -20,7 +20,7 @@ const styles = {
          borderRadius:'5px',
      },*/
     btn: {
-        backgroundColor: '#1de9b6',
+        backgroundColor: '#F6836D',
         color: '#FFFFFF',
     },
     formControl: {
@@ -157,16 +157,16 @@ class AjouterMember extends React.Component {
 
                                 <Grid item xs={12}>
                                     <FormControl component="fieldset">
-                                        <FormLabel component="legend" >Genre</FormLabel>
-                                        <RadioGroup aria-label="gender" name="genre" value={this.state.genre} onChange={this.handleChange}>
-                                            <FormControlLabel value="femme" control={<Radio />} label="Femme" />
-                                            <FormControlLabel value="homme" control={<Radio />} label="Homme" />
+                                        <FormLabel  component="legend" >Genre</FormLabel>
+                                        <RadioGroup  aria-label="gender" name="genre" value={this.state.genre} onChange={this.handleChange}>
+                                            <FormControlLabel  value="femme" control={<Radio style={{color:'#0075A4'}} />} label="Femme" />
+                                            <FormControlLabel value="homme" control={<Radio style={{color:'#0075A4'}}/>} label="Homme" />
                                         </RadioGroup>
                                     </FormControl>
                                 </Grid>
                                 <Grid item xs={12}>
                                     <Button type='submit' onClick={this.handleChange} fullWidth className={classes.btn}>
-                                        Enregistrer
+                                        Ajouter
                                     </Button>
 
                                 </Grid>

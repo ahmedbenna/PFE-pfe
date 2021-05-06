@@ -6,7 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import {LocationOn, Today} from '@material-ui/icons';
 
 import axios from 'axios'
-import loginImg from '../img/login.svg'
+import loginImg from '../../img/login.svg'
 
 
 

@@ -19,6 +19,14 @@ const styles = {
     link: {
         textDecoration: 'none',
     },
+    time:{
+        backgroundColor:'#bbdefb',
+        '&:hover': {
+            backgroundColor: '#F9F871',
+            
+        },
+
+    }
 };
 
 class CalendarRDVModifier extends Component {
@@ -126,7 +134,7 @@ class CalendarRDVModifier extends Component {
                                             <Grid item>
                                                 <Typography> {moment(this.state.d0).format('dddd')} </Typography>
                                                 <Typography> {moment(this.state.d0).format("MMM D")}</Typography>
-                                                <Grid container direction='column'>
+                                                <Grid spacing={1} container direction='column'>
                                                     {
                                                         this.state.dispo.map(diss =>
                                                             (moment(diss.dateTime).isSame(this.state.d0, "day")) ?
@@ -134,7 +142,7 @@ class CalendarRDVModifier extends Component {
 
                                                                     
                                                                         <Grid item>
-                                                                            <Button onClick={() => this.handleRDV(diss.id)}>
+                                                                            <Button className={classes.time} onClick={() => this.handleRDV(diss.id)}>
                                                                                 <Typography > {moment(diss.dateTime).format('HH:mm')}</Typography>
                                                                             </Button>
 
@@ -150,7 +158,7 @@ class CalendarRDVModifier extends Component {
                                             <Grid item>
                                                 <Typography> {moment(this.state.d1).format('dddd')} </Typography>
                                                 <Typography> {moment(this.state.d1).format("MMM D")}</Typography>
-                                                <Grid container direction='column'>
+                                                <Grid  spacing={1}container direction='column'>
                                                     {
                                                         this.state.dispo.map(diss =>
 
@@ -158,7 +166,7 @@ class CalendarRDVModifier extends Component {
                                                                 (
 
                                                                         <Grid item>
-                                                                            <Button onClick={() => this.handleRDV(diss.id)}>
+                                                                            <Button className={classes.time}onClick={() => this.handleRDV(diss.id)}>
                                                                                 <Typography > {moment(diss.dateTime).format('HH:mm')}</Typography>
                                                                             </Button>
 
@@ -173,14 +181,14 @@ class CalendarRDVModifier extends Component {
                                             <Grid item>
                                                 <Typography> {moment(this.state.d2).format('dddd')} </Typography>
                                                 <Typography> {moment(this.state.d2).format("MMM D")}</Typography>
-                                                <Grid container direction='column'>
+                                                <Grid spacing={1} container direction='column'>
                                                     {
                                                         this.state.dispo.map(diss =>
                                                             (moment(diss.dateTime).isSame(this.state.d2, "day")) ?
                                                                 (
 
                                                                         <Grid item>
-                                                                            <Button onClick={() => this.handleRDV(diss.id)}>
+                                                                            <Button className={classes.time}onClick={() => this.handleRDV(diss.id)}>
                                                                                 <Typography > {moment(diss.dateTime).format('HH:mm')}</Typography>
                                                                             </Button>
 
@@ -194,14 +202,14 @@ class CalendarRDVModifier extends Component {
                                             <Grid item>
                                                 <Typography> {moment(this.state.d3).format('dddd')} </Typography>
                                                 <Typography> {moment(this.state.d3).format("MMM D")}</Typography>
-                                                <Grid container direction='column'>
+                                                <Grid spacing={1} container direction='column'>
                                                     {
                                                         this.state.dispo.map(diss =>
                                                             (moment(diss.dateTime).isSame(this.state.d3, "day")) ?
                                                                 (
 
                                                                         <Grid item>
-                                                                            <Button onClick={() => this.handleRDV(diss.id)}>
+                                                                            <Button className={classes.time}onClick={() => this.handleRDV(diss.id)}>
                                                                                 <Typography > {moment(diss.dateTime).format('HH:mm')}</Typography>
                                                                             </Button>
 
@@ -215,14 +223,14 @@ class CalendarRDVModifier extends Component {
                                             <Grid item>
                                                 <Typography> {moment(this.state.d4).format('dddd')} </Typography>
                                                 <Typography> {moment(this.state.d4).format("MMM D")}</Typography>
-                                                <Grid container direction='column'>
+                                                <Grid spacing={1} container direction='column'>
                                                     {
                                                         this.state.dispo.map(diss =>
                                                             (moment(diss.dateTime).isSame(this.state.d4, "day")) ?
                                                                 (
 
                                                                         <Grid item>
-                                                                            <Button onClick={() => this.handleRDV(diss.id)}>
+                                                                            <Button className={classes.time}onClick={() => this.handleRDV(diss.id)}>
                                                                                 <Typography > {moment(diss.dateTime).format('HH:mm')}</Typography>
                                                                             </Button>
 
@@ -236,14 +244,14 @@ class CalendarRDVModifier extends Component {
                                             <Grid item>
                                                 <Typography> {moment(this.state.d5).format('dddd')} </Typography>
                                                 <Typography> {moment(this.state.d5).format("MMM D")}</Typography>
-                                                <Grid container direction='column'>
+                                                <Grid spacing={1} container direction='column'>
                                                     {
                                                         this.state.dispo.map(diss =>
                                                             (moment(diss.dateTime).isSame(this.state.d5, "day")) ?
                                                                 (
 
                                                                         <Grid item>
-                                                                            <Button onClick={() => this.handleRDV(diss.id)}>
+                                                                            <Button className={classes.time}onClick={() => this.handleRDV(diss.id)}>
                                                                                 <Typography > {moment(diss.dateTime).format('HH:mm')}</Typography>
                                                                             </Button>
 

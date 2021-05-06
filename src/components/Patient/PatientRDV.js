@@ -1,12 +1,13 @@
-import { Card, CardContent, Grid, Typography } from '@material-ui/core'
+import { Button, Card, CardContent, Grid, Typography } from '@material-ui/core'
 import { render } from '@testing-library/react'
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles';
 
 import axios from 'axios'
 import moment from 'moment';
-import SupprimerRDV from './SupprimerRDV';
+import SupprimerRDV from '../SupprimerRDV';
 import PatientModifierRDV from './PatientModifierRDV';
+import { Link } from 'react-router-dom';
 
 const styles = {
     root: {
@@ -18,6 +19,9 @@ const styles = {
         fontSize: 16,
         fontWeight: 500,
     },
+    btn:{
+        textDecoration: 'none',
+    }
 
 };
 class PatientRDV extends React.Component {
@@ -59,7 +63,12 @@ class PatientRDV extends React.Component {
         const { classes } = this.props;
         return (
             <div>
-                <Grid container>
+                <div style={{float: 'right'}}>
+                <Link className={classes.btn} to='/components/Result'>
+                    <Button style={{backgroundColor:'#F6836D',color:'#FFFFFF'}}>Prendre un RDV</Button>
+                </Link>
+                </div>
+                <Grid Spacing={2} container>
                     <Grid item xs='auto' >
                         <Card className={classes.root} variant="outlined">
                             <CardContent  >
@@ -75,10 +84,10 @@ class PatientRDV extends React.Component {
                                                     <div>
                                                         <Grid direction='row' justify='center' alignContent='center' container>
                                                             <Grid item>
-                                                                <Typography>rdv time: {moment(r.disponibilite.dateTime).calendar()}</Typography>
+                                                            <Typography>rdv time: {moment(r.disponibilite.dateTime).calendar()}</Typography>
+
                                                                 <Typography>medecin:{r.disponibilite.medecin.nom} {r.disponibilite.medecin.prenom} </Typography>
                                                                 <Typography>adresse:{r.disponibilite.medecin.adresse} </Typography>
-
                                                             </Grid>
                                                             <Grid direction="column" alignContent='flex-end' justify='flex-end' item>
                                                                 <SupprimerRDV rdv={r.id} />

@@ -1,5 +1,4 @@
 import React from 'react';
-import Rendezvous from './Rendezvous'
 import { makeStyles } from '@material-ui/core/styles';
 
 

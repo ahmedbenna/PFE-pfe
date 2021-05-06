@@ -1,8 +1,8 @@
 import React from 'react'
 
-import PatientNav from './PatientNav'
-import DoctorNav from './DoctorNav'
-import MainNav from './MainNav'
+import PatientNav from './Patient/PatientNav'
+import DoctorNav from './Doctor/DoctorNav'
+import MainNav from './Main/MainNav'
 
 export default function Nav() {
     const patient=  JSON.parse(localStorage.getItem('patientInfo'))

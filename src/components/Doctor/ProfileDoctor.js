@@ -11,9 +11,10 @@ import Disponibilite from './Disponibilite';
 import EditDoctorProfile from './EditDoctorProfile';
 import Doctorprofi from './Doctorprofi'
 
-import { Settings, EventNote, Alarm, AccessTime } from '@material-ui/icons';
+import { Settings, EventNote, Alarm, Event } from '@material-ui/icons';
 
 import AjouterDisponibilite from './AjouterDisponibilite';
+import DoctorCalendarPrincipal from './DoctorCalendarPrincipal';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -70,7 +71,7 @@ function ProfileDoctor() {
     return (
         <div >
             <Grid container>
-                <Grid item xs={12} sm={4} className={classes.pad}>
+                <Grid item xs={12} sm={3} className={classes.pad}>
                     <Grid container direction='column'>
                         <Paper className={classes.paper}>
                             <div className={classes.container}>
@@ -84,6 +85,15 @@ function ProfileDoctor() {
                                     </Typography>
                                 </div>
                                 <Divider />
+                                <List component="nav" >      
+                                    <ListItem button onClick={() =>{setCmp(<DoctorCalendarPrincipal />)}}>
+                                        <ListItemIcon>
+                                            <Event />
+                                        </ListItemIcon>
+                                        <ListItemText primary="Calendar"  />
+                                    </ListItem>
+                                </List>
+                                <Divider />
                                 <List component="nav" >
                                     <ListItem button onClick={() =>{setCmp(<DoctorRendezVous/>)}}>
                                         <ListItemIcon>
@@ -91,9 +101,6 @@ function ProfileDoctor() {
                                         </ListItemIcon>
                                         <ListItemText primary="Mes rendez-vous"  />
                                     </ListItem>
-                                </List>
-                                <Divider />
-                                <List component="nav" >
                                     <ListItem button onClick={() =>{setCmp( <Disponibilite/>)}}>
                                         <ListItemIcon>
                                             <Alarm />
@@ -122,7 +129,7 @@ function ProfileDoctor() {
                         </Paper>
                     </Grid>
                 </Grid>
-                <Grid item xs={12} sm={8} className={classes.pad}>
+                <Grid item xs={12} sm={9} className={classes.pad}>
                     <Grid container direction='column'>
                         <Paper className={classes.paper}>
 

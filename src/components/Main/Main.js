@@ -2,17 +2,17 @@ import React from 'react'
 // import './Main.css'
 import { withStyles } from '@material-ui/core/styles';
 
-import home from '../img/home.svg'
-import doccard from '../img/docscard.svg'
+import home from '../../img/home.svg'
+import doccard from '../../img/docscard.svg'
 
-import appointement from '../img/appointement.svg'
-import fast from '../img/fast.svg'
-import tim from '../img/time.svg'
+import appointement from '../../img/appointement.svg'
+import fast from '../../img/fast.svg'
+import tim from '../../img/time.svg'
 
 
 import { Typography, CssBaseline, Grid, } from '@material-ui/core/';
 import MainCard from './MainCard';
-import SearchComp from './SearchComp';
+import SearchComp from '../Recherche/SearchComp';
 
 
 

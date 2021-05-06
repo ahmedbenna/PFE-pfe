@@ -7,6 +7,8 @@ import { Clear } from '@material-ui/icons';
 import { withStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import MemebersNameCard from './MemebersNameCard';
+import moment from 'moment';
 
 
 
@@ -25,79 +27,61 @@ class ConfermerRDVDialog extends Component {
 
         super(props)
         this.state = {
-            id: this.props.idPat,
             open:false,
         }
         console.log(this.state.id)
     }
-    // componentDidMount() {
-    //     const url = 'http://localhost:8080/api/comptePatients/' + this.state.patient.id + '/patients'
-    //     console.log("memberisssssddddddd", this.state.patient.id)
-    //     axios.get(url)
-    //         .then(res => {
-    //             console.log("membre :", res.data);
-    //             this.setState({ members: res.data });
-
-    //         }
-    //         )
-    // }
-    handleClickOpen = () => {
-        this.setState({ open: true });
-    };
-    componentDidMount() {
-        this.handleClickOpen()
-    }
+    
+   
+    
+    
     
     handleConfermer = e => {
         console.log("pattt", this.state.patient)
         const data = {
             patient: {
-                id: this.props.idPat
+                id: this.props.pat.id
             },
             disponibilite: {
-                id: this.state.dispo.id
+                id: this.props.dispo.id
             }
 
         }
         console.log('data', data)
         axios
             .post("http://localhost:8080/api/rendezvous", data)
-            .then(res => { console.log(res) })
+            .then(res => { console.log(res) 
+                    window.location = '/components/RdvComplited'})
             .catch(err => { console.log(err) })
+        
     }
 
     render() {
         const { classes } = this.props;
-        // const patient = JSON.parse(localStorage.getItem('patientInfo'))
-        // console.log("memmmmmmm", this.state.members)
+       
 
         
 
-        const handleClose = () => {
-            this.setState({ open: false });
-        };
+        
 
         return (
             <div className={classes.contaier}>
 
-
-
-
-
-
                 <div>
-                    {/* <Button just on onClick={handleClickOpen}><Clear /></Button> */}
+                    <Button just on onClick={()=>{this.setState({ open: true })}}> <MemebersNameCard nom={this.props.pat.nom} prenom={this.props.pat.prenom} /></Button>
 
-                    <Dialog open={this.state.open} onClose={handleClose} aria-labelledby="form-dialog-title">
+                    <Dialog open={this.state.open} onClose={()=>{this.setState({ open: false })}} aria-labelledby="form-dialog-title">
 
                         <DialogContent>
-                            <Typography> confermer {this.props.nom} {this.props.prenom} ?</Typography>
+                            <Typography vairant='h5'> patient: {this.props.pat.nom} {this.props.pat.prenom} </Typography>
+                            <Typography variant='p'>{moment(this.props.dispo.dateTime).calendar()} </Typography>
+
                         </DialogContent>
                         <DialogActions>
                             <Button onClick={this.handleConfermer} color="primary">
                                 Confermers
                                             </Button>
-                            <Button onClick={handleClose} color="primary">
+                            <Button onClick={()=>{this.setState({ open: false })}} color="primary">
                                 Annuler
                                             </Button>
                         </DialogActions>

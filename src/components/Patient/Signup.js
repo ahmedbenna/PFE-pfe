@@ -104,7 +104,8 @@ class Signup extends React.Component {
     axios.post('http://localhost:8080/api/comptePatients', data)
       .then(res =>{
         this.getPat(res.data.id)
-        this.props.history.push('/')
+        window.location= '/components/PatientSignupComplited'
+        // window.location.reload(false)
 
       }
       )
@@ -116,6 +117,14 @@ class Signup extends React.Component {
   render() {
     const { classes } = this.props;
     console.log()
+
+    const validate= () =>{
+      let temp= {}
+      temp.nom = this.state.nom ? "":" required "
+      temp.prenom = this.state.prenom ? "":" required "
+      temp.email = (/$|.+@.+..+/).test(this.state.email) ? "":" Email invalide "
+      temp.telephone = this.state.telephone.length=8 ? "":" Numero de telephone invalide "
+    }
 
 
     return (
@@ -224,8 +233,8 @@ class Signup extends React.Component {
                   <FormControl component="fieldset">
                     <FormLabel component="legend" >genre</FormLabel>
                     <RadioGroup aria-label="gender" name="gener" value={this.state.gener} onChange={this.handleChange}>
-                      <FormControlLabel value="femme" control={<Radio />} label="Femme" />
-                      <FormControlLabel value="homme" control={<Radio />} label="Homme" />
+                      <FormControlLabel value="femme" control={<Radio style={{color:'#0075A4'}}/>} label="Femme" />
+                      <FormControlLabel value="homme" control={<Radio style={{color:'#0075A4'}} />} label="Homme" />
                     </RadioGroup>
                   </FormControl>
                 </Grid>

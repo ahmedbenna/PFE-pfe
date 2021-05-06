@@ -17,7 +17,6 @@ export default class ConfermerRDV extends Component {
             selectedPat:'',
 
         }
-        // this.handleConfermer = this.handleConfermer.bind(this);
 
     }
 
@@ -32,9 +31,7 @@ export default class ConfermerRDV extends Component {
             }
             )
     }
-    // componentDidMount() {
-    //     this.setState({med:this.props.location.med})
-    // }
+   
     handleConfermer  (idPat)  {
         
         console.log("pattt", this.state.patient)
@@ -53,11 +50,7 @@ export default class ConfermerRDV extends Component {
             .then(res => { console.log(res) })
             .catch(err => { console.log(err) })
     }
-    // componentDidUpdate(prevProps, prevState) {
-    //     if(this.prevState.selectedPat !== this.state.selectedPat ){
-
-    //     }
-    // }
+   
     
     
 
@@ -67,6 +60,11 @@ export default class ConfermerRDV extends Component {
         console.log("med", this.state)
         return (
             <div>
+                <Grid container direction='column' justify='center' alignItems='center' >
+                    <Grid item>
+                        <Typography variant='h4'style={{color: '#13568B'}}>Choisir un membre:</Typography>
+                    </Grid>
+                </Grid>
                 <Typography>
                     doc nom :{this.state.dispo.medecin.email}
                 </Typography>
@@ -76,48 +74,19 @@ export default class ConfermerRDV extends Component {
                 <div>
                     <Grid alignItems="center" justify='center' spacing={4} container>
                         <Grid item>
-                            <Typography>Moi</Typography>
-                            <Button onClick={()=>this.setState({selectedPat:this.state.patient.patientPrincipal})}>
-                                <MemebersNameCard nom={this.state.patient.patientPrincipal.nom} prenom={this.state.patient.patientPrincipal.prenom} />
-                            </Button>
-                            {/* {/* {(this.state.dialog) ?
-                                (    <>
-                                    <ConfermerRDVDialog idPat={this.state.patient.patientPrincipal.id}/>
-                                    {/* {  this.setState({dialog:false})} */}
-                                    {/* </>  */}
-                                {/* ):('')} */}  
+                            <Typography style={{fontWeight:'500'}}>Moi</Typography>
+                            <ConfermerRDVDialog pat={this.state.patient.patientPrincipal} dispo={this.state.dispo}/>
                         </Grid>
 
                         {this.state.members.map(member =>
 
                             <Grid  item xs='auto' >
-                                {/* <Divider /> */}
-                                <Button onClick={()=>this.setState({selectedPat:member})}>
-                                    <MemebersNameCard nom={member.nom} prenom={member.prenom} />
-                                </Button>
-                                {/* {(this.state.dialog) ?
-                                (   <>
-                                    <ConfermerRDVDialog idPat={member.id}/>
-                                  {  this.setState({dialog:false})}
-                                    </>
-                                ):('')} */}
+                                <ConfermerRDVDialog pat={member} dispo={this.state.dispo}/> 
                             </Grid>
-                            
-
                         )}
-
                     </Grid>
                 </div>
-                <div>
-                    {(this.state.selectedPat)?
-                    (   <div>
-                            <Typography>Patient selectioner: {this.state.selectedPat.nom} {this.state.selectedPat.prenom}</Typography>
-                            <Button onClick={this.handleConfermer(this.state.selectedPat.id)}>Confermer</Button>
-                        </div>
-                    ):('')}
-                </div>
-                
-            </div>
+             </div>
         )
     }
 }

@@ -23,37 +23,6 @@ const styles = {
   }
 
 };
-// function getRDV() {
-//   const url = ''
-//   axios
-//     .get(url)
-//     .then(res => { const tousRDV = res.data })
-//     .catch(err => { console.log(err) })
-// }
-
-
-// const dat= new Date()
-// const datesToAddContentTo = [dat.setDate(dat.getDate() + 1), dat.setDate(dat.getDate() + 2), dat.setDate(dat.getDate() + 3)];
-
-
-// function tileContent({ date, view }) {
-//   // Add class to tiles in month view only
-//   if (view === 'month') {
-//     // Check if a date React-Calendar wants to check is on the list of dates to add class to
-//     if (datesToAddContentTo.find(dDate =>moment(dDate).isSame(date) )) {
-//       return 'My content';
-//     }
-//   }
-// }
-
-// const now = new Date();
-// const tomorrow = addDays(now, 1);
-// const in3Days = addDays(now, 3);
-// const in5Days = addDays(now, 5);
-// // console.log("aaaa", now);
-
-// const disabledDates = [tomorrow, in3Days, in5Days, addDays(now, 0)];
-
 
  class AfficherCalendre extends React.Component {
   constructor() {
@@ -65,16 +34,9 @@ const styles = {
       dispo:[],
       
     };
-    // this.checkdates = disabledDates;
 
   }
   
-  
-  // tileClassName({date, view}){
-  //   if (view === 'month') {
-  //     return this.state.dispo.find(dDate => isSameDay(dDate.dateTime, date));
-  //   }
-  // }
   getDispo () {
     const doc= JSON.parse(localStorage.getItem("doctorInfo"))
     const url='http://localhost:8080/api/medecins/'+doc.id+'/disponibilitesAll'
@@ -100,7 +62,6 @@ render(){
         locale="fr-fr"
         onChange={(a,event)=>{this.setState({today:a})}}
         value={this.state.today}
-        // {this.state.dispo.map(diss=>{
           
                       tileClassName={({ activeStartDate, date, view }) =>
                       {
@@ -118,15 +79,12 @@ render(){
                         }
                       }
                         
-                          // view === 'month' && (moment(date,'YYYY-MM-DD').isSame(moment('2021-05-09'))) ? 
-                          // classes.day : null
-                          
+                         
                       }
     
       />    
       <DispoParJour
         today={this.state.today}
-        // tousRDV={tousRDV}
       />
     </div>
   );

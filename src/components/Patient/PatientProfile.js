@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
 
     },
     pad: {
-        padding: '20px'
+        padding: '10px'
     },
     paper: {
         backgroundColor: '#F0F0F0',
@@ -77,7 +77,7 @@ function PatientProfile() {
     return (
         <div >
             <Grid container>
-                <Grid item xs={12} sm={5} className={classes.pad}>
+                <Grid item xs={12} sm={4} className={classes.pad}>
                     <Grid container direction='column'>
                         <Paper className={classes.paper}>
                             <div button className={classes.container}>
@@ -137,7 +137,7 @@ function PatientProfile() {
                         </Paper>
                     </Grid>
                 </Grid>
-                <Grid item xs={12} sm={7} className={classes.pad}>
+                <Grid item xs={12} sm={8} className={classes.pad}>
                     <Grid container direction='column'>
                         <Paper className={classes.paper}>
 

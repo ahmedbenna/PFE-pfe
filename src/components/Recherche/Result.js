@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import {  Container,  Typography,CssBaseline, TextField, Grid, Button, MenuItem, FormControl, Select, InputLabel } from '@material-ui/core/';
+import { Container, Typography, CssBaseline, TextField, Grid, Button, MenuItem, FormControl, Select, InputLabel } from '@material-ui/core/';
 
 import Doctorcard from './Doctorcard';
 import { Search } from '@material-ui/icons';
@@ -20,7 +20,7 @@ const styles = {
     searchbutton: {
         height: '56px',
         width: '200px',
-        color:'#ffffff',
+        color: '#ffffff',
         backgroundColor: '#f06024',
     },
     searchfield: {
@@ -42,16 +42,16 @@ const styles = {
 
     },
     docs: {
-        display: 'flex',  
-        justifyContent:'center',
-        alignItems:'center',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
         paddingTop: '20px',
         paddingBottom: '5px',
     },
     search: {
         padding: '50px',
         justifyContent: 'center',
-        backgroundColor: 'rgb(38 82 147)',
+        backgroundColor: '#363768',
     },
 
 };
@@ -72,7 +72,7 @@ class Result extends Component {
         // localStorage.removeItem('dispo')
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        
+
 
         axios.get('http://localhost:8080/api/specialites')
             .then(res => {
@@ -88,7 +88,7 @@ class Result extends Component {
             }
             )
     }
-    
+
     // getDocs = () => {
     //     // this.setState({docs})
     //     this.setState({ docs: JSON.parse(localStorage.getItem("docs")) })
@@ -105,7 +105,8 @@ class Result extends Component {
         // // else if(prevState.docs === this.state.docs){
         // //     this.setState({docs:[]})
         // // }
-        if(prevState.docs!== this.state.docs){
+        if (prevState.docs !== this.state.docs) {
+            localStorage.removeItem('docs')
             this.setState({})
         }
     }
@@ -118,41 +119,41 @@ class Result extends Component {
     }
 
     handleSubmit = (event) => {
-         event.preventDefault()
-         localStorage.removeItem('docs')
+        event.preventDefault()
+        localStorage.removeItem('docs')
 
-        
-        if ((this.state.specialite !=='') && (this.state.ville !=='')){
-            const url = 'http://localhost:8080/api/specialites/'+this.state.specialite+'/villes/'+this.state.ville+'/medecins'
+
+        if ((this.state.specialite !== '') && (this.state.ville !== '')) {
+            const url = 'http://localhost:8080/api/specialites/' + this.state.specialite + '/villes/' + this.state.ville + '/medecins'
             axios.get(url)
                 .then(res => {
-                    console.log("recherche",res.data)
-                   this.setState({docs:res.data})
+                    console.log("recherche", res.data)
+                    this.setState({ docs: res.data })
                 })
                 .catch(res =>
                     console.log(res))
         }
-        else if((this.state.specialite !=='')){
-            const url = 'http://localhost:8080/api/specialites/'+this.state.specialite+'/medecins'
+        else if ((this.state.specialite !== '')) {
+            const url = 'http://localhost:8080/api/specialites/' + this.state.specialite + '/medecins'
             axios.get(url)
                 .then(res => {
-                 
-                    console.log("recherche",res.data)
-                    this.setState({docs:res.data})
 
-                   
+                    console.log("recherche", res.data)
+                    this.setState({ docs: res.data })
+
+
                 })
                 .catch(res =>
                     console.log(res.data))
         }
-        else if(this.state.ville !==''){
-            const url = 'http://localhost:8080/api/villes/'+this.state.ville+'/medecins'
+        else if (this.state.ville !== '') {
+            const url = 'http://localhost:8080/api/villes/' + this.state.ville + '/medecins'
             axios.get(url)
                 .then(res => {
-                    this.setState({docs:res.data})
+                    this.setState({ docs: res.data })
 
-                    console.log("recherche",res.data)
-                 
+                    console.log("recherche", res.data)
+
                 })
                 .catch(res =>
                     console.log(res))
@@ -177,7 +178,7 @@ class Result extends Component {
                         <form onSubmit={this.handleSubmit}>
                             <div className={classes.search}>
                                 <Grid container justify='center'>
-                                    <Grid item>
+                                    <Grid item >
                                         <FormControl variant="outlined" className={classes.formControl}>
                                             <InputLabel >Ville</InputLabel>
                                             <Select
@@ -224,26 +225,28 @@ class Result extends Component {
                         </form>
                     </div>
                 </Container>
-                <div className={classes.docs}>
-                    {((this.state.docs !== null)&&(this.state.docs !== [])) ? (
-                        this.state.docs.map(doc =>
-                            <Doctorcard
-                                doc={doc}
-                                img='../img/doc.png'
-                                prenom={doc.prenom}
-                                nom={doc.nom}
-                                specialite={doc.specialite.libelle}
-                                address={doc.adresse}
-                                ville={doc.ville.ville}
-                            />
-                        )) :(this.state.docs == [])?
-                        (<Typography>loading</Typography>)
-                        : 
-                        (<Typography>Vide</Typography>)
+                <div >
+                    <Grid container direction="column" alignItems="center" justify="center">
+                        <Grid  item xs={12} >
+                            {((this.state.docs !== null) && (this.state.docs !== [])) ? (
+                                this.state.docs.map(doc =>
+                                    <Doctorcard
+                                        doc={doc}
+                                        img='../img/doc.png'
+                                        prenom={doc.prenom}
+                                        nom={doc.nom}
+                                        specialite={doc.specialite.libelle}
+                                        address={doc.adresse}
+                                        ville={doc.ville.ville}
+                                    />
+                                )) : (this.state.docs == []) ?
+                                (<Typography>loading</Typography>)
+                                :
+                                (<Typography>Vide</Typography>)
 
-                    }
-
-
+                            }
+                        </Grid>
+                    </Grid>
 
                 </div>
             </div>

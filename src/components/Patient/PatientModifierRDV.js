@@ -7,7 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 
 import {Edit} from '@material-ui/icons'
-import Calendar from './Calendar';
+import Calendar from '../Recherche/Calendar';
 import CalendarRDVModifier from './CalendarRDVModifier';
 
 
