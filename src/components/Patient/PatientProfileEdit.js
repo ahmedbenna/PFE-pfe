@@ -90,12 +90,14 @@ class PatientProfileEdit extends React.Component {
         };
 
 
-        const url = 'http://localhost:8080/api/patients/'+this.state.idPatientPrincipal
+        const url = 'http://localhost:8080/api/patients/' + this.state.idPatientPrincipal
         axios.put(url, data)
-            .then(res =>{ axios.get('http://localhost:8080/api/patients/'+this.state.id)
-                                      .then(res=> {localStorage.setItem('patientInfo',res.data)})
-                                                                    
-                        window.location.reload(false)})
+            .then(res => {
+                axios.get('http://localhost:8080/api/patients/' + this.state.id)
+                .then(res => { localStorage.setItem('patientInfo', res.data) })
+
+                window.location.reload(false)
+            })
             .catch(err => console.log(err))
     };
 
@@ -179,7 +181,20 @@ class PatientProfileEdit extends React.Component {
                                 />
                             </Grid>
                             <Grid item xs={12}>
-                                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                <TextField
+                                    id="date"
+                                    label="Date de naissance"
+                                    type="date"
+                                    name="dateDeNaissance"
+                                    fullWidth
+                                    onChange={this.handleChange}
+                                    value={this.state.dateDeNaissance}
+
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
+                                    />
+                                    {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
                                     <KeyboardDatePicker
                                         disableToolbar
                                         variant="inline"
@@ -196,31 +211,31 @@ class PatientProfileEdit extends React.Component {
                                             'aria-label': 'change date',
                                         }}
                                     />
-                                </MuiPickersUtilsProvider>
+                                </MuiPickersUtilsProvider> */}
 
 
                             </Grid>
                             <Grid item xs={12}>
-                                <FormControl component="fieldset">
-                                    <FormLabel component="legend" >genre</FormLabel>
-                                    <RadioGroup aria-label="gender" name="genre" value={this.state.genre} onChange={this.handleChange}>
-                                        <FormControlLabel value="femme" control={<Radio />} label="Femme" />
-                                        <FormControlLabel value="homme" control={<Radio />} label="Homme" />
-                                    </RadioGroup>
-                                </FormControl>
+                                    <FormControl component="fieldset">
+                                        <FormLabel component="legend" >genre</FormLabel>
+                                        <RadioGroup aria-label="gender" name="genre" value={this.state.genre} onChange={this.handleChange}>
+                                            <FormControlLabel value="femme" control={<Radio />} label="Femme" />
+                                            <FormControlLabel value="homme" control={<Radio />} label="Homme" />
+                                        </RadioGroup>
+                                    </FormControl>
+                                </Grid>
                             </Grid>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <Button type='submit' onClick={this.handleSubmit} fullWidth className={classes.btn}>
-                                Enregistrer
+                            <Grid item xs={12}>
+                                <Button type='submit' onClick={this.handleSubmit} fullWidth className={classes.btn}>
+                                    Enregistrer
                                     </Button>
 
-                        </Grid>
+                            </Grid>
 
 
                     </form>
                 </Container>
-                {/* </DialogContent>
+                    {/* </DialogContent>
 
                     <DialogActions>
                         <Button onClick={this.handleSubmit} color="primary">

@@ -5,7 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 import axios from 'axios'
 import moment from 'moment';
-import SupprimerRDV from '../SupprimerRDV';
+import SupprimerRDV from './SupprimerRDV';
 import PatientModifierRDV from './PatientModifierRDV';
 import { Link } from 'react-router-dom';
 

@@ -6,6 +6,8 @@ import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom'
 
 import axios from 'axios'
+import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
 
 
 const styles = {
@@ -27,10 +29,10 @@ const styles = {
         justifyContent: 'center',
         width: 'calc(400px - 5px)',
     },
-    
-    link:{
-        textDecoration : 'none',
-        color:'rgb(0 35 75)'
+
+    link: {
+        textDecoration: 'none',
+        color: 'rgb(0 35 75)'
     },
 }
 class AjouterMember extends React.Component {
@@ -40,12 +42,12 @@ class AjouterMember extends React.Component {
         // let patientData = localStorage.getItem('patientInfo');
         // patientData = JSON.parse(patientData);
         this.state = {
-            nom: 'aqqq',
-            prenom: 'b',
-            genre: 'homme',
-            dateDeNaissance: '1999-04-01',
-            telephone: '111111',
-            adresse: 'djer',
+            nom: '',
+            prenom: '',
+            genre: '',
+            dateDeNaissance: '',
+            telephone: '',
+            adresse: '',
             patient: JSON.parse(localStorage.getItem("patientInfo"))
 
         }
@@ -81,11 +83,12 @@ class AjouterMember extends React.Component {
         axios.post(url, data)
             .then(res => console.log(res))
             .catch(err => console.log(err));
-        
-        
+
+
     };
     render() {
         const { classes } = this.props;
+        console.log(this.state)
 
         return (
             <div>
@@ -108,6 +111,7 @@ class AjouterMember extends React.Component {
                                         name='nom'
                                         label='Nom'
                                         variant='standard'
+                                        required
                                         fullWidth />
                                 </Grid>
                                 <Grid item sm={6}>
@@ -118,6 +122,7 @@ class AjouterMember extends React.Component {
                                         name='prenom'
                                         label='Prenom'
                                         variant='standard'
+                                        required
                                         fullWidth />
                                 </Grid>
 
@@ -130,6 +135,7 @@ class AjouterMember extends React.Component {
                                         name='telephone'
                                         label='Telephone'
                                         variant='standard'
+                                        required
                                         fullWidth />
                                 </Grid>
                                 <Grid item xs={12}>
@@ -140,8 +146,10 @@ class AjouterMember extends React.Component {
                                         name='adresse'
                                         label='Address'
                                         variant='standard'
+                                        required
                                         fullWidth />
                                 </Grid>
+                              
                                 <Grid item xs={12}>
                                     <TextField
                                         variant="standard"
@@ -151,16 +159,17 @@ class AjouterMember extends React.Component {
                                         fullWidth
                                         name="dateDeNaissance"
                                         type="date"
+                                        helperText="Date de naissance"
                                         id="dateDeNaissance"
                                     />
                                 </Grid>
 
                                 <Grid item xs={12}>
                                     <FormControl component="fieldset">
-                                        <FormLabel  component="legend" >Genre</FormLabel>
-                                        <RadioGroup  aria-label="gender" name="genre" value={this.state.genre} onChange={this.handleChange}>
-                                            <FormControlLabel  value="femme" control={<Radio style={{color:'#0075A4'}} />} label="Femme" />
-                                            <FormControlLabel value="homme" control={<Radio style={{color:'#0075A4'}}/>} label="Homme" />
+                                        <FormLabel component="legend" >Genre</FormLabel>
+                                        <RadioGroup aria-label="gender" name="genre" value={this.state.genre} onChange={this.handleChange}>
+                                            <FormControlLabel value="femme" control={<Radio style={{ color: '#0075A4' }} />} label="Femme" />
+                                            <FormControlLabel value="homme" control={<Radio style={{ color: '#0075A4' }} />} label="Homme" />
                                         </RadioGroup>
                                     </FormControl>
                                 </Grid>

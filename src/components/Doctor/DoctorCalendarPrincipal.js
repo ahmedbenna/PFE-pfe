@@ -53,7 +53,7 @@ class DoctorCalendarPrincipal extends Component {
 
   getDispo() {
     const doc = JSON.parse(localStorage.getItem("doctorInfo"))
-    const url = 'http://localhost:8080/api/medecins/' + doc.id + '/disponibilitesAll'
+    const url = 'http://localhost:8080/api/medecins/' + doc.id + '/disponibilitesVide'
     axios
       .get(url)
       .then(res => {

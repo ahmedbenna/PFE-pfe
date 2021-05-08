@@ -52,7 +52,7 @@ class Calendar extends Component {
         this.state.d4.setDate(this.state.d4.getDate() + 4)
         this.state.d5.setDate(this.state.d5.getDate() + 5)
         // localStorage.removeItem("dispo")
-        const url = 'http://localhost:8080/api/medecins/' + props.doc.id + '/disponibilitesAll'
+        const url = 'http://localhost:8080/api/medecins/' + props.doc.id + '/disponibilitesVide'
 
         axios.get(url)
             .then(res => {

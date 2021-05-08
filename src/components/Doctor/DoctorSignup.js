@@ -122,8 +122,7 @@ class DoctorSignup extends Component {
             .then(res => {
                 this.getMed(res.data.id)
                
-                this.props.history.push('/')
-                window.location.reload(false)
+                window.location = '/'
             })
             .catch(err => console.log(err))
 
@@ -301,6 +300,7 @@ class DoctorSignup extends Component {
                                                 variant="outlined"
                                                 required
                                                 fullWidth
+                                                type="number"
                                                 label="Contact Urgence"
                                                 name="contactUrgence"
                                                 value={this.state.contactUrgence}

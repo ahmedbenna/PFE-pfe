@@ -50,7 +50,7 @@ class DispoParJour extends React.Component {
 
     }
     getAllDispo = () => {
-        const url = 'http://localhost:8080/api/medecins/' + this.state.doctor.id + '/disponibilitesAll'
+        const url = 'http://localhost:8080/api/medecins/' + this.state.doctor.id + '/disponibilitesVide'
         axios
             .get(url)
             .then(res => {
