@@ -97,7 +97,12 @@ class EditDoctorProfile extends Component {
 
         const url = "http://localhost:8080/api/medecins/"+this.state.id
         axios.put(url, data)
-            .then(res => console.log(res))
+            .then(res => {console.log(res)
+                const url='http://localhost:8080/api/medecins/'+this.state.id
+                axios
+                    .get(url)
+                    .then(res=>{console.log('getmed',res)
+                          localStorage.setItem('doctorInfo', JSON.stringify(res.data))})})
             .catch(err => console.log(err));
     };
     render() {

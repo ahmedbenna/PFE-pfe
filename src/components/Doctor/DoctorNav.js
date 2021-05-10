@@ -55,7 +55,7 @@ export default function DoctorNav(props) {
   };
   const handledeconnecter = () => {
     setAnchorEl(null);
-    window.location.reload(false)
+    window.location='/'
     localStorage.removeItem('doctorInfo')
   };
 
@@ -80,9 +80,9 @@ export default function DoctorNav(props) {
               <Link to='/components/ProfileDoctor'className={classes.link}> 
               <MenuItem onClick={handleClose}>Profile</MenuItem>
               </Link>
-              <Link to='/'className={classes.link}>
+              
               <MenuItem onClick={handledeconnecter}>Se deconnecter</MenuItem>
-              </Link>
+              
             </Menu> 
           </div>
         </Toolbar>

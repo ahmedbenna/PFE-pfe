@@ -15,6 +15,7 @@ import { Settings, EventNote, Alarm, Event } from '@material-ui/icons';
 
 import AjouterDisponibilite from './AjouterDisponibilite';
 import DoctorCalendarPrincipal from './DoctorCalendarPrincipal';
+import ModifierMDP from './ModifierMDP';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -114,12 +115,12 @@ function ProfileDoctor() {
                                             </ListItemIcon>
                                             <ListItemText primary="Modifier profile" />
                                         </ListItem>
-                                        {/* <ListItem button onClick={() =>{setCmp(<AjouterDisponibilite/>)}}>
+                                        <ListItem button onClick={() =>{setCmp(<ModifierMDP/>)}}>
                                             <ListItemIcon>
-                                                <AccessTime />
+                                                <Settings />
                                             </ListItemIcon>
-                                            <ListItemText primary="Disponibilite" />
-                                        </ListItem> */}
+                                            <ListItemText primary="Changer mote de passe" />
+                                        </ListItem>
                                     
 
                                 </List>

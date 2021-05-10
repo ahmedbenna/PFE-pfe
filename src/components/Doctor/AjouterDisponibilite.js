@@ -71,7 +71,7 @@ class AjouterDisponibilite extends React.Component {
         dis2 = moment(dis2).add(h2, 'hour').format()
 
 
-        while (((moment(dis).isBefore(dis2))) || (moment(dis).isSame(dis2))) {
+        while (moment(dis).isBefore(dis2)){
             
 
             const url = 'http://localhost:8080/api/medecins/' + this.state.id + '/disponibilites'

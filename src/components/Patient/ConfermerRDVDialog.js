@@ -51,7 +51,9 @@ class ConfermerRDVDialog extends Component {
         axios
             .post("http://localhost:8080/api/rendezvous", data)
             .then(res => { console.log(res) 
-                    window.location = '/components/RdvComplited'})
+                    localStorage.setItem('rdv',res.data.id)
+                    window.location = '/components/RdvComplited'
+                })
             .catch(err => { console.log(err) })
         
     }

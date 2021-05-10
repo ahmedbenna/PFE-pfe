@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Grid, Typography, Divider, Button, Dialog, DialogActions, DialogContent } from '@material-ui/core'
+import { Grid, Typography,  Button, Dialog, DialogActions, DialogContent, IconButton } from '@material-ui/core'
 import { Clear } from '@material-ui/icons';
 
 import { withStyles } from '@material-ui/core/styles';
@@ -60,7 +60,7 @@ class DisponibiliteDelete extends Component {
 
 
                 <div>
-                    <Button just on onClick={handleClickOpen}><Clear /></Button>
+                    <IconButton just on onClick={handleClickOpen}><Clear /></IconButton>
 
                     <Dialog open={this.state.open} onClose={handleClose} aria-labelledby="form-dialog-title">
 

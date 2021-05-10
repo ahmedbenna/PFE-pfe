@@ -74,7 +74,7 @@ class DoctorCalendarPrincipal extends Component {
 
     return (
       <div>
-        <div style={{ float: 'right'}}>
+        <div style={{ float: 'right',padding:'20px'}}>
           <Grid container  >
             <Grid item>
               <Typography variant='p' className={classes.dispo} style={{ padding: '10px' }} > Disponible </Typography>
@@ -84,7 +84,7 @@ class DoctorCalendarPrincipal extends Component {
             </Grid>
           </Grid>
         </div>
-        <div>
+        <div style={{padding:'20px'}}>
           <Grid container>
             <Grid item >
               <Calendar
